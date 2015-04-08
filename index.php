@@ -3,7 +3,8 @@
     ini_set("display_error",1);
 
     session_start();
-    require "vendor/autoload.php";
+
+    require_once "vendor/autoload.php";
     require_once 'appsecret.php';
 
     use Facebook\FacebookRequest;
@@ -14,6 +15,7 @@
     const WEBURL = "https://catcontest.herokuapp.com/";
 
     FacebookSession::setDefaultApplication(APPID, APPSECRET);
+
     $helper = new FacebookRedirectLoginHelper(WEBURL);
 
     if( isset($_SESSION) && isset($_SESSION['fb_token']) ){
