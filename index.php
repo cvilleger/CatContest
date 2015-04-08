@@ -44,7 +44,7 @@
         $request_user = new FacebookRequest($session, "GET", "/me");
         $request_user_executed = $request_user->execute();
         $user = $request_user_executed->getGraphObject(\Facebook\GraphUser::className());
-        $logoutUrl = $_SERVER['HTTP_HOST'] . '/logout.php' ;
+        $logoutUrl = '/logout.php' ;
         echo $user->getName();
         echo "<a href='".$logoutUrl."'>Déconnection</a>";
 
