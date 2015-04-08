@@ -4,14 +4,14 @@
 
     session_start();
     require "vendor/autoload.php";
+    require_once 'appsecret.php';
 
     use Facebook\FacebookRequest;
     use Facebook\FacebookSession;
     use Facebook\FacebookRedirectLoginHelper;
 
     const APPID = "831785973542579";
-    const APPSECRET = "0367e48eef2d81d799bfbaa97570715f";
-    const WEBURL = "https://esgiproject.herokuapp.com/";
+    const WEBURL = "https://catcontest.herokuapp.com/";
 
     FacebookSession::setDefaultApplication(APPID, APPSECRET);
     $helper = new FacebookRedirectLoginHelper(WEBURL);
