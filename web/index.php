@@ -3,9 +3,9 @@
     ini_set("display_error",1);
 
     session_start();
-
-    require_once "vendor/autoload.php";
-    require_once 'appsecret.php';
+    define('PATH_ROOT', $_SERVER['DOCUMENT_ROOT'] . '..');
+    require_once PATH_ROOT . '/vendor/autoload.php';
+    require_once PATH_ROOT . '/service/appsecret.php';
 
     use Facebook\FacebookRequest;
     use Facebook\FacebookSession;
@@ -30,8 +30,6 @@
 <head>
     <meta charset="utf-8">
     <title>ESGI PROJECT</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
 </head>
 <body>
 <header>
