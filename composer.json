@@ -1,6 +1,7 @@
 {
   "require": {
     "ext-mbstring": "*",
+    "heroku/heroku-buildpack-php": "dev-master",
     "facebook/php-sdk-v4" : "~4.0"
   }
 }
