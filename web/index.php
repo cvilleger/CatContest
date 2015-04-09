@@ -3,7 +3,7 @@
     ini_set("display_error",1);
 
     session_start();
-    define('PATH_ROOT', $_SERVER['DOCUMENT_ROOT'] . '..');
+    define('PATH_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/..');
     require_once PATH_ROOT . '/vendor/autoload.php';
     require_once PATH_ROOT . '/service/appsecret.php';
 
