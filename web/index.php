@@ -29,14 +29,17 @@
 <?php
     if($session){
         $_SESSION['fb_token'] = (string) $session->getAccessToken();
-
-        $request_user = new FacebookRequest($session, "GET", "/me");
-        $request_user_executed = $request_user->execute();
-        $user = $request_user_executed->getGraphObject(\Facebook\GraphUser::className());
         $logoutUrl = '/logout.php' ;
-        echo $user->getName();
-        echo "<a href='".$logoutUrl."'>Déconnection</a>";
-
+        try{
+            $user_profile = (new FacebookRequest(
+                $session, 'GET', '/me'
+            ))->execute()->getGraphObject(\Facebook\GraphUser::className());
+            echo $user->getName() . '<br>';
+            echo "<a href='".$logoutUrl."'>Déconnection</a>";
+        } catch(FacebookRequestException $e) {
+            echo "Exception occured, code: " . $e->getCode();
+            echo " with message: " . $e->getMessage();
+        }
     } else {
         $loginUrl = $helper->getLoginUrl();
         echo "<a href='".$loginUrl."'>Facebook Login</a>";
