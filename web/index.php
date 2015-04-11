@@ -1,8 +1,6 @@
 <?php
     require '../Bootstrap.php' ;
 
-
-
     use Facebook\FacebookRequest;
     use Facebook\FacebookSession;
     use Facebook\FacebookRedirectLoginHelper;
