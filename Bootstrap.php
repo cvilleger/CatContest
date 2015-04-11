@@ -10,8 +10,8 @@ define('PATH_SERVICE', $_SERVER['DOCUMENT_ROOT'] . '/../service');;
 
 require_once PATH_ROOT . '/vendor/autoload.php';
 
-define('FB_APPID', '831785973542579');
-define('FB_APPSECRET', '0367e48eef2d81d799bfbaa97570715f');
-define('WEBURL','https://catcontest.herokuapp.com/');
+define('FB_APPID', '833099383411238');
+define('FB_APPSECRET', 'b2ebce8739519354843579e32ccc271b');
+define('WEBURL','https://catcontestdev.herokuapp.com/');
 
 session_start();
