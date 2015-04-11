@@ -1,4 +1,7 @@
 {
+  "name": "ChristopheVilleger/CatContest",
+  "license": "proprietary",
+  "type": "project",
   "require": {
     "ext-mbstring": "*",
     "facebook/php-sdk-v4" : "~4.0"

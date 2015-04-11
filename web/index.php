@@ -1,20 +1,13 @@
 <?php
-    error_reporting(E_ALL);
-    ini_set("display_error",1);
+    require '../Bootstrap.php' ;
 
-    session_start();
-    define('PATH_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/..');
-    require_once PATH_ROOT . '/vendor/autoload.php';
-    require_once PATH_ROOT . '/service/appsecret.php';
+
 
     use Facebook\FacebookRequest;
     use Facebook\FacebookSession;
     use Facebook\FacebookRedirectLoginHelper;
 
-    const APPID = "831785973542579";
-    const WEBURL = "https://catcontest.herokuapp.com/";
-
-    FacebookSession::setDefaultApplication(APPID, APPSECRET);
+    FacebookSession::setDefaultApplication(FB_APPID, FB_APPSECRET);
 
     $helper = new FacebookRedirectLoginHelper(WEBURL);
 
