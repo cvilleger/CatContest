@@ -34,8 +34,16 @@
             $user_profile = (new FacebookRequest(
                 $session, 'GET', '/me'
             ))->execute()->getGraphObject(\Facebook\GraphUser::className());
-            echo $user->getName() . '<br>';
+
+            $user_name = $user_profile->getName();
+            $user_id = $user_profile->getId();
+            echo $user_profile->getName() . '<br>';
             echo "<a href='".$logoutUrl."'>Déconnection</a>";
+            ?>
+                <img id='user_photo' src="//graph.facebook.com/<?php echo $user_id ?>/picture?type=large">
+
+
+            <?php
         } catch(FacebookRequestException $e) {
             echo "Exception occured, code: " . $e->getCode();
             echo " with message: " . $e->getMessage();
