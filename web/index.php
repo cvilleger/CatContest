@@ -1,22 +1,6 @@
-<?php
-    require '../Bootstrap.php' ;
+<?php require_once '../Bootstrap.php' ; ?>
 
-    use Facebook\FacebookRequest;
-    use Facebook\FacebookSession;
-    use Facebook\FacebookRedirectLoginHelper;
-
-    FacebookSession::setDefaultApplication(FB_APPID, FB_APPSECRET);
-
-    $helper = new FacebookRedirectLoginHelper(WEBURL);
-
-    if( isset($_SESSION) && isset($_SESSION['fb_token']) ){
-        $session = new FacebookSession($_SESSION['fb_token']);
-    } else {
-        $session = $helper->getSessionFromRedirect();
-    }
-?>
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="utf-8">
@@ -24,23 +8,23 @@
 </head>
 <body>
 <header>
-    <h1>ESGI PROJECT</h1>
+    <h1>Cat Contest</h1>
 </header>
 <?php
-    if($session){
-        $_SESSION['fb_token'] = (string) $session->getAccessToken();
 
-        $request_user = new FacebookRequest($session, "GET", "/me");
-        $request_user_executed = $request_user->execute();
-        $user = $request_user_executed->getGraphObject(\Facebook\GraphUser::className());
-        $logoutUrl = '/logout.php' ;
-        echo $user->getName();
-        echo "<a href='".$logoutUrl."'>Déconnection</a>";
-
-    } else {
-        $loginUrl = $helper->getLoginUrl();
-        echo "<a href='".$loginUrl."'>Facebook Login</a>";
-    }
+$FacebookAuthService = new FacebookAuthService();
+if(empty($_SESSION)){
+    $loginUrl = $FacebookAuthService->getSimpleLoginUrl();
+    echo "<a href='".$loginUrl."'>Facebook Login</a>";
+}else{
+    $userProfile = $FacebookAuthService->getUserProfileAuth();
+    $username = $userProfile->getName();
+    $userId = $userProfile->getId();
+    echo $username . '<br>';
+    ?>
+        <a href='/logout.php'>Déconnection</a>
+    <?php
+}
 
 ?>
 <footer>
