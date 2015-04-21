@@ -1,22 +1,6 @@
-<?php
-    require '../Bootstrap.php' ;
+<?php require_once '../Bootstrap.php' ; ?>
 
-    use Facebook\FacebookRequest;
-    use Facebook\FacebookSession;
-    use Facebook\FacebookRedirectLoginHelper;
-
-    FacebookSession::setDefaultApplication(FB_APPID, FB_APPSECRET);
-
-    $helper = new FacebookRedirectLoginHelper(WEBURL);
-
-    if( isset($_SESSION) && isset($_SESSION['fb_token']) ){
-        $session = new FacebookSession($_SESSION['fb_token']);
-    } else {
-        $session = $helper->getSessionFromRedirect();
-    }
-?>
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="utf-8">
@@ -24,34 +8,23 @@
 </head>
 <body>
 <header>
-    <h1>ESGI PROJECT</h1>
+    <h1>Cat Contest</h1>
 </header>
 <?php
-    if($session){
-        $_SESSION['fb_token'] = (string) $session->getAccessToken();
-        $logoutUrl = '/logout.php' ;
-        try{
-            $user_profile = (new FacebookRequest(
-                $session, 'GET', '/me'
-            ))->execute()->getGraphObject(\Facebook\GraphUser::className());
 
-            $user_name = $user_profile->getName();
-            $user_id = $user_profile->getId();
-            echo $user_profile->getName() . '<br>';
-            echo "<a href='".$logoutUrl."'>Déconnection</a>";
-            ?>
-                <img id='user_photo' src="//graph.facebook.com/<?php echo $user_id ?>/picture?type=large">
-
-
-            <?php
-        } catch(FacebookRequestException $e) {
-            echo "Exception occured, code: " . $e->getCode();
-            echo " with message: " . $e->getMessage();
-        }
-    } else {
-        $loginUrl = $helper->getLoginUrl();
-        echo "<a href='".$loginUrl."'>Facebook Login</a>";
-    }
+$FacebookAuthService = new FacebookAuthService();
+if(empty($_SESSION)){
+    $loginUrl = $FacebookAuthService->getSimpleLoginUrl();
+    echo "<a href='".$loginUrl."'>Facebook Login</a>";
+}else{
+    $userProfile = $FacebookAuthService->getUserProfileAuth();
+    $username = $userProfile->getName();
+    $userId = $userProfile->getId();
+    echo $username . '<br>';
+    ?>
+        <a href='/logout.php'>Déconnection</a>
+    <?php
+}
 
 ?>
 <footer>
