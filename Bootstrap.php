@@ -10,7 +10,7 @@ define('PATH_CONTROLLER', $_SERVER['DOCUMENT_ROOT'] . '/../controller');
 define('PATH_MODEL', $_SERVER['DOCUMENT_ROOT'] . '/../model');
 define('PATH_SERVICE', $_SERVER['DOCUMENT_ROOT'] . '/../service');;
 
-define('ENV', 'DEV');
+define('ENV', 'PROD');
 
 if(ENV === 'DEV'){
     define('FB_APPID', '833099383411238');
