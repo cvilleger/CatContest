@@ -25,8 +25,8 @@ if(empty($_SESSION)){
         <a href='/logout.php'>Déconnection</a>
     <?php
 }
-
 ?>
+
 <footer>
     <div
         class="fb-like"

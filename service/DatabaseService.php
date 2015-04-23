@@ -1,6 +1,7 @@
 <?php
 
 class DatabaseService {
+
     /**
     * Instance de la classe DatabaseService
     * @access private
@@ -15,7 +16,7 @@ class DatabaseService {
     * @var string
     * @see __construct
     */
-    private $type = "pgsql";
+    private $type = DB_TYPE;
 
     /**
     * Adresse du serveur hôte.
@@ -23,7 +24,7 @@ class DatabaseService {
     * @var string
     * @see __construct
     */
-    private $host = "ec2-184-73-254-144.compute-1.amazonaws.com";
+    private $host = DB_HOST;
 
     /**
     * Nom de la bdd.
@@ -31,7 +32,7 @@ class DatabaseService {
     * @var string
     * @see __construct
     */
-    private $dbname = "d2v1v9s59qbq66";
+    private $dbname = DB_NAME;
 
     /**
     * Nom d'utilisateur
@@ -39,7 +40,7 @@ class DatabaseService {
     * @var string
     * @see __construct
     */
-    private $username = "xjzkvstydxdowf";
+    private $username = DB_USERNAME;
 
     /**
     * Mot de passe
@@ -47,13 +48,13 @@ class DatabaseService {
     * @var string
     * @see __construct
     */
-    private $password = 'jT6bxwXWoee69wtN0MlE2_j2jb';
+    private $password = DB_PASSWORD;
 
-    private $dbh;
+    private $pdo;
 
     private function __construct() {
         try{
-            $this->dbh = new PDO(
+            $this->pdo = new PDO(
                 $this->type.':host='.$this->host.'; dbname='.$this->dbname,
                 $this->username,
                 $this->password,
@@ -61,7 +62,7 @@ class DatabaseService {
             );
 
             $req = "SET NAMES UTF8";
-            $result = $this->dbh->prepare($req);
+            $result = $this->pdo->prepare($req);
             $result->execute();
         } catch(PDOException $e){
             echo $e->getMessage();
@@ -81,11 +82,11 @@ class DatabaseService {
     }
 
     /**
-    * Retourn l'objet PDO permettant de manipuler la base de donnée.
-    * @return $dbh
+    * Retourne l'objet PDO permettant de manipuler la base de donnée.
+    * @return $pdo
     */
-    public function getDbh()
+    public function getPdo()
     {
-        return $this->dbh;
+        return $this->pdo;
     }
 }
