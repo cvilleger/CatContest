@@ -5,34 +5,39 @@
 <head>
     <meta charset="utf-8">
     <title>ESGI PROJECT</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 <body>
 <header>
-    <h1>Cat Contest</h1>
+    <div class="content_center_header">
+        <h1>Cat Contest</h1>
+    </div>
 </header>
-<?php
+<div id="content">
+    <div class="content_center_body">
 
-$FacebookAuthService = new FacebookAuthService();
-if(empty($_SESSION)){
-    $loginUrl = $FacebookAuthService->getSimpleLoginUrl();
-    echo "<a href='".$loginUrl."'>Facebook Login</a>";
-}else{
-    $userProfile = $FacebookAuthService->getUserProfileAuth();
-    $username = $userProfile->getName();
-    $userId = $userProfile->getId();
-    echo $username . '<br>';
-    ?>
-        <a href='/logout.php'>Déconnection</a>
     <?php
-}
 
-?>
+    $FacebookAuthService = new FacebookAuthService();
+    if(empty($_SESSION)){
+        $loginUrl = $FacebookAuthService->getSimpleLoginUrl();
+        echo "<a href='".$loginUrl."'>Facebook Login</a>";
+    }else{
+        $userProfile = $FacebookAuthService->getUserProfileAuth();
+        $username = $userProfile->getName();
+        $userId = $userProfile->getId();
+        echo $username . '<br>';
+        ?>
+            <a href='/logout.php'>Déconnection</a>
+        <?php
+    }
+
+    ?>
+    </div>
+</div>
 <footer>
-    <div
-        class="fb-like"
-        data-share="true"
-        data-width="450"
-        data-show-faces="true">
+    <div class="content_center_footer">
+        <p>Cat Contest 2015</p>
     </div>
 </footer>
 <script>
