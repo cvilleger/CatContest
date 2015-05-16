@@ -4,7 +4,7 @@
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <title>ESGI PROJECT</title>
+    <title>Cat Contest</title>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 <body>
@@ -18,11 +18,10 @@
 
     <?php
 
-    $FacebookAuthService = new FacebookAuthService();
     if(empty($_SESSION)){
-        $loginUrl = $FacebookAuthService->getSimpleLoginUrl();
-        echo "<a href='".$loginUrl."'>Facebook Login</a>";
+        echo "<a href='/login.php'>Facebook Login</a>";
     }else{
+        $FacebookAuthService = new FacebookAuthService();
         $userProfile = $FacebookAuthService->getUserProfileAuth();
         $username = $userProfile->getName();
         $userId = $userProfile->getId();
