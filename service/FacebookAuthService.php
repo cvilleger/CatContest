@@ -35,40 +35,51 @@ class FacebookAuthService {
             $session = $this->_helper->getSessionFromRedirect();
         }
 
+        //If first time (or session cleared)
         if(!$session){
-            //First time or cache cleared
             $params = array('scope' => $permission);
             $loginUrl = $this->_helper->getLoginUrl($params);
             header("location: $loginUrl" );
-        }else{
-            $_SESSION['fb_token'] = (string) $session->getAccessToken();
+            exit;
+        }
 
-            //Get list of permissions from Facebook
-            try{
-                $facebookRequest = (new FacebookRequest(
-                    $session, 'GET', '/me/permissions'
-                ))->execute()->getGraphObject(\Facebook\GraphObject::className());
-            } catch(FacebookRequestException $e) {
-                echo "Exception occured, code: " . $e->getCode();
-                echo " with message: " . $e->getMessage();
-                die();
-            }
+        //if invalide accessToken
+        if(!$session->getAccessToken()->isValid(FB_APPID, FB_APPSECRET)){
+            unset($_SESSION['fb_token']);
+            header("location: /" );
+            exit;
+        }
 
-            $permissionsArray = $facebookRequest->asArray();
+        //Set a long lived access token.
+        $session->getAccessToken()->extend(FB_APPID, FB_APPSECRET);
 
-            $isFacebookGranted = false;
-            foreach($permissionsArray as $permStatus){
-                if($permStatus->permission == $permission){
-                    //Asked permission at least once
-                    if($permStatus->status == 'granted'){
-                        $isFacebookGranted = true;
-                        break;
-                    } else {
-                        //User declined Facebook permission at least once
-                        $params = array('scope' => $permission);
-                        $loginUrl = $this->_helper->getLoginUrl($params);
-                        header("location: $loginUrl" );
-                    }
+        $_SESSION['fb_token'] = (string) $session->getAccessToken();
+
+        //Get list of permissions from Facebook
+        try{
+            $facebookRequest = (new FacebookRequest(
+                $session, 'GET', '/me/permissions'
+            ))->execute()->getGraphObject(\Facebook\GraphObject::className());
+        } catch(FacebookRequestException $e) {
+            echo "Exception occured, code: " . $e->getCode();
+            echo " with message: " . $e->getMessage();
+        }
+
+        $permissionsArray = $facebookRequest->asArray();
+
+        $isFacebookGranted = false;
+        foreach($permissionsArray as $permStatus){
+            if($permStatus->permission == $permission){
+                //Asked permission at least once
+                if($permStatus->status == 'granted'){
+                    $isFacebookGranted = true;
+                    break;
+                } else {
+                    //User declined Facebook permission at least once
+                    $params = array('scope' => $permission);
+                    $reLoginUrl = $this->_helper->getReRequestUrl($params); //Ask for reRequest
+                    header('location: ' . $reLoginUrl);
+                    exit;
                 }
             }
         }
@@ -80,6 +91,7 @@ class FacebookAuthService {
             $params = array('scope' => $permission);
             $loginUrl = $this->_helper->getLoginUrl($params);
             header("location: $loginUrl" );
+            exit;
         }
 
     }
@@ -136,6 +148,28 @@ class FacebookAuthService {
         //echo "Posted with id: " . $response->getProperty('id');
 
         return $response;
+    }
+
+    /**
+     * Get all Facebook Albums
+     * @return FacebookRequest as Array()
+     */
+    public function getFacebookAlbums(){
+        $session = $this->getAuth('user_photos');
+
+        try{
+            $facebookRequest = (new FacebookRequest(
+                $session, 'GET', '/me/albums'
+            ))->execute()->getGraphObject(\Facebook\GraphAlbum::className());
+        } catch(FacebookRequestException $e) {
+            echo "Exception occured, code: " . $e->getCode();
+            echo " with message: " . $e->getMessage();
+            die();
+        }
+
+        $facebookAlbums = $facebookRequest->asArray()['data'];
+
+        return $facebookAlbums;
     }
 
 }
