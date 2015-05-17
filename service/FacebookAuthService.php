@@ -25,7 +25,6 @@ class FacebookAuthService {
 
     /**
      * Get Auth for a certain permission
-     * @see
      * @param $permission (public_profile, publish_actions
      * @return $session
      */
@@ -37,13 +36,52 @@ class FacebookAuthService {
         }
 
         if(!$session){
+            //First time or cache cleared
             $params = array('scope' => $permission);
             $loginUrl = $this->_helper->getLoginUrl($params);
             header("location: $loginUrl" );
         }else{
             $_SESSION['fb_token'] = (string) $session->getAccessToken();
+
+            //Get list of permissions from Facebook
+            try{
+                $facebookRequest = (new FacebookRequest(
+                    $session, 'GET', '/me/permissions'
+                ))->execute()->getGraphObject(\Facebook\GraphObject::className());
+            } catch(FacebookRequestException $e) {
+                echo "Exception occured, code: " . $e->getCode();
+                echo " with message: " . $e->getMessage();
+                die();
+            }
+
+            $permissionsArray = $facebookRequest->asArray();
+
+            $isFacebookGranted = false;
+            foreach($permissionsArray as $permStatus){
+                if($permStatus->permission == $permission){
+                    //Asked permission at least once
+                    if($permStatus->status == 'granted'){
+                        $isFacebookGranted = true;
+                        break;
+                    } else {
+                        //User declined Facebook permission at least once
+                        $params = array('scope' => $permission);
+                        $loginUrl = $this->_helper->getLoginUrl($params);
+                        header("location: $loginUrl" );
+                    }
+                }
+            }
         }
-        return $session;
+
+        if($isFacebookGranted){
+            return $session;
+        } else {
+            //User have not been asked for this permission
+            $params = array('scope' => $permission);
+            $loginUrl = $this->_helper->getLoginUrl($params);
+            header("location: $loginUrl" );
+        }
+
     }
 
     /**
@@ -74,13 +112,14 @@ class FacebookAuthService {
     public function postPhotoWithMsg($path, $msg, $isURL = false){
         $session = $this->getAuth('publish_actions');
 
+        $postParam = array('message' => $msg);
+        if($isURL){
+            $postParam['url'] = $path;
+        }else{
+            $postParam['source'] = $path;
+        }
+
         try{
-            $postParam = array('message' => $msg);
-            if($isURL){
-                $postParam['url'] = $path;
-            }else{
-                $postParam['source'] = $path;
-            }
             $response = (new FacebookRequest(
                 $session, 'POST', '/me/photos', $postParam
             ))->execute()->getGraphObject();
@@ -88,12 +127,13 @@ class FacebookAuthService {
             // If you're not using PHP 5.5 or later, change the file reference to:
             // 'source' => '@/path/to/file.name'
 
-            echo "Posted with id: " . $response->getProperty('id');
         } catch(FacebookRequestException $e) {
             echo "Exception occured, code: " . $e->getCode();
             echo " with message: " . $e->getMessage();
             die();
         }
+
+        //echo "Posted with id: " . $response->getProperty('id');
 
         return $response;
     }
