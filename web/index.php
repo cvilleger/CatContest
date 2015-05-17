@@ -22,7 +22,7 @@
         echo "<a href='/login.php'>Facebook Login</a>";
     }else{
         $FacebookAuthService = new FacebookAuthService();
-        $userProfile = $FacebookAuthService->getUserProfileAuth();
+        $userProfile = $FacebookAuthService->getUserProfile();
         $username = $userProfile->getName();
         $userId = $userProfile->getId();
         echo $username . '<br>';

@@ -19,6 +19,11 @@ header{
     text-align: center;
 }
 
+#content{
+    background-color: #59A79A;
+    padding: 25px 0;
+}
+
 .content_center_header{
     background-color: white;
     margin: auto;
@@ -31,11 +36,6 @@ header{
     margin: auto;
     padding: 25px;
     width: 80%;
-}
-
-
-#content{
-    background-color: #59A79A;
 }
 
 footer{

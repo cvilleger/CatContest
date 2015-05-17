@@ -24,33 +24,45 @@ class FacebookAuthService {
     }
 
     /**
-     * Get /me Facebook Request
-     * @return $user_profile FacebookRequest
+     * Get Auth for a certain permission
+     * @see
+     * @param $permission (public_profile, publish_actions
+     * @return $session
      */
-    public function getUserProfileAuth(){
-        $helper = $this->_helper;
-
+    private function getAuth($permission){
         if( isset($_SESSION) && isset($_SESSION['fb_token']) ){
             $session = new FacebookSession($_SESSION['fb_token']);
         } else {
-            $session = $helper->getSessionFromRedirect();
+            $session = $this->_helper->getSessionFromRedirect();
         }
 
-        if($session){
-            $_SESSION['fb_token'] = (string) $session->getAccessToken();
-            try{
-                $user_profile = (new FacebookRequest(
-                    $session, 'GET', '/me'
-                ))->execute()->getGraphObject(\Facebook\GraphUser::className());
-            } catch(FacebookRequestException $e) {
-                echo "Exception occured, code: " . $e->getCode();
-                echo " with message: " . $e->getMessage();
-                die();
-            }
-        } else {
-            $loginUrl = $helper->getLoginUrl();
+        if(!$session){
+            $params = array('scope' => $permission);
+            $loginUrl = $this->_helper->getLoginUrl($params);
             header("location: $loginUrl" );
+        }else{
+            $_SESSION['fb_token'] = (string) $session->getAccessToken();
         }
+        return $session;
+    }
+
+    /**
+     * Get /me Facebook Request
+     * @return $user_profile FacebookRequest
+     */
+    public function getUserProfile(){
+        $session = $this->getAuth('public_profile');
+
+        try{
+            $user_profile = (new FacebookRequest(
+                $session, 'GET', '/me'
+            ))->execute()->getGraphObject(\Facebook\GraphUser::className());
+        } catch(FacebookRequestException $e) {
+            echo "Exception occured, code: " . $e->getCode();
+            echo " with message: " . $e->getMessage();
+            die();
+        }
+
         return $user_profile;
     }
 
@@ -59,42 +71,30 @@ class FacebookAuthService {
      * @param bool $isURL
      * @return mixed
      */
-    public function photoAuthAndPost($path, $isURL = false){
-        $helper = $this->_helper;
+    public function postPhotoWithMsg($path, $msg, $isURL = false){
+        $session = $this->getAuth('publish_actions');
 
-        if( isset($_SESSION) && isset($_SESSION['fb_token']) ){
-            $session = new FacebookSession($_SESSION['fb_token']);
-        } else {
-            $session = $helper->getSessionFromRedirect();
-        }
-
-        if($session){
-            $_SESSION['fb_token'] = (string) $session->getAccessToken();
-            try{
-                $postParam = array('message' => 'Ma photo du Cat Contest 2015');
-                if($isURL){
-                    $postParam['url'] = $path;
-                }else{
-                    $postParam['source'] = $path;
-                }
-                $response = (new FacebookRequest(
-                    $session, 'POST', '/me/photos', $postParam
-                ))->execute()->getGraphObject();
-
-                // If you're not using PHP 5.5 or later, change the file reference to:
-                // 'source' => '@/path/to/file.name'
-
-                echo "Posted with id: " . $response->getProperty('id');
-            } catch(FacebookRequestException $e) {
-                echo "Exception occured, code: " . $e->getCode();
-                echo " with message: " . $e->getMessage();
-                die();
+        try{
+            $postParam = array('message' => $msg);
+            if($isURL){
+                $postParam['url'] = $path;
+            }else{
+                $postParam['source'] = $path;
             }
-        } else {
-            $params = array('scope' => 'publish_actions');
-            $loginUrl = $helper->getLoginUrl($params);
-            header("location: $loginUrl" );
+            $response = (new FacebookRequest(
+                $session, 'POST', '/me/photos', $postParam
+            ))->execute()->getGraphObject();
+
+            // If you're not using PHP 5.5 or later, change the file reference to:
+            // 'source' => '@/path/to/file.name'
+
+            echo "Posted with id: " . $response->getProperty('id');
+        } catch(FacebookRequestException $e) {
+            echo "Exception occured, code: " . $e->getCode();
+            echo " with message: " . $e->getMessage();
+            die();
         }
+
         return $response;
     }
 
