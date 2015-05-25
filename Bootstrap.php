@@ -18,11 +18,20 @@ if($_SERVER['HTTP_HOST'] === 'localhost'){
     define('WEBURL','http://localhost/');
 
     // Database
+    /*
     define('DB_TYPE', 'mysql');
     define('DB_HOST', 'localhost');
     define('DB_NAME', 'catcontest');
     define('DB_USERNAME', 'root');
     define('DB_PASSWORD', '');
+    */
+
+    define('DB_TYPE', 'pgsql');
+    define('DB_HOST', 'ec2-184-73-254-144.compute-1.amazonaws.com');
+    define('DB_NAME', 'd2v1v9s59qbq66');
+    define('DB_USERNAME', 'xjzkvstydxdowf');
+    define('DB_PASSWORD', 'jT6bxwXWoee69wtN0MlE2_j2jb');
+
 
 } else {
     define('FB_APPID', '831785973542579');
