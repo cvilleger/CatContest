@@ -152,6 +152,7 @@ class FacebookAuthService {
 
     /**
      * Get all Facebook Albums
+     * With this struct : array( array('Infos' => $album, 'Photos' => $Photos),array(...),... )
      * @return FacebookRequest as Array()
      */
     public function getFacebookAlbums(){
@@ -169,7 +170,24 @@ class FacebookAuthService {
 
         $facebookAlbums = $facebookRequest->asArray()['data'];
 
-        return $facebookAlbums;
+        $returnAlbums = array();
+        foreach($facebookAlbums as $album){
+            try{
+                $facebookRequest = (new FacebookRequest(
+                    $session, 'GET', '/' . $album->id . '/photos'
+                ))->execute()->getGraphObject();
+            } catch(FacebookRequestException $e) {
+                echo "Exception occured, code: " . $e->getCode();
+                echo " with message: " . $e->getMessage();
+                die();
+            }
+
+            $Photos = $facebookRequest->asArray()['data'];
+
+            $returnAlbums[] = array('Infos' => $album, 'Photos' => $Photos);
+        }
+
+        return $returnAlbums;
     }
 
 }
