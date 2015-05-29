@@ -17,13 +17,13 @@ body{
 nav{
     background-color: #b03e2c;
     color: #e5dec2;
-    padding-top: 2%;
-    padding-bottom: 2%;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
 }
 
 nav li{
     display: inline-block;
-    font-family: "AntsyPants Regular";
+    font-family: "Gabriola";
     font-size: 1.7em;
     padding-left: 10%;
 }
@@ -36,6 +36,15 @@ nav ul{
 p{
 	font-family: "Gabriola";
 	font-size: 1.7em;
+}
+
+#photos-header ul{
+	margin-top: 3%;
+	text-align: center;
+}
+
+#photos-header li{
+	display: inline-block;
 }
 
 #wrapper-title-header{

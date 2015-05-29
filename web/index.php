@@ -37,7 +37,12 @@
     <!-- Header -->
     <header>
         <!-- Cat rounded photo -->
-        <div id="photo-header"></div>
+        <div id="photos-header">
+            <ul>
+                <li><img src="public/img/cup-anti horaire.png" alt="left cup"></li>
+                <li><img src="public/img/cat-logo-351.png" alt="cat logo"></li>
+                <li><img src="public/img/cup-horaire.png" alt="right cup"></li>
+        </div>
 
         <!-- Wrapper title contest -->
         <div id="wrapper-title-header">
