@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cb9c782b1e7f057d892bd1594515dfe4",
+    "hash": "4d7a009b515650f3e43ac43f2445a585",
     "packages": [
         {
             "name": "facebook/php-sdk-v4",
@@ -63,7 +63,6 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.4",
         "ext-mbstring": "*"
     },
     "platform-dev": []

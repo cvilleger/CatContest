@@ -1,0 +1,95 @@
+/**
+* Fonts
+**/
+@font-face{
+	font-family: "AntsyPants Regular";
+	src: url("../font/ANTSYPAN.TTF");
+}
+@font-face{
+	font-family: "Chunkfive";
+	src: url("../font/Chunkfive.otf");
+}
+
+body{
+	background-color: #e5dec2; 
+}
+
+nav{
+    background-color: #b03e2c;
+    color: #e5dec2;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+}
+
+nav li{
+    display: inline-block;
+    font-family: "Gabriola";
+    font-size: 1.7em;
+    padding-left: 10%;
+}
+
+nav ul{
+    text-align: center;
+    padding-right: 10%;
+}
+
+p{
+	font-family: "Gabriola";
+	font-size: 1.7em;
+}
+
+#photos-header ul{
+	margin-top: 3%;
+	text-align: center;
+}
+
+#photos-header li{
+	display: inline-block;
+}
+
+#wrapper-title-header{
+	margin-top: 5%; 
+	margin-bottom: 5%;
+	text-align: center;
+
+}
+
+#title-header{
+	font-family: "Chunkfive";
+	font-size: 5em;
+	color: #b03e2c;
+	text-shadow: -1px 0 white, 0 4px white, 0px 0 white, 0 -1px white;
+}
+
+#wrapper-animal-enterprise{
+	background-color: rgb(185, 122, 87);
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: 30%;
+	margin: auto;
+	border-radius: 4px;
+	box-shadow: 5px 5px 15px 0px #656565;
+}
+
+#second-wrapper-animal-enterprise{
+	border: 3px solid white;
+	width: 96%;
+	margin: auto;
+	text-align: center;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	background-color: rgb(185, 122, 87);
+}
+
+#title-enterprise{
+	display: block;
+	font-size: 2.5em;
+	font-family: "Gabriola";
+	color: white;
+}
+
+/**
+* Class
+**/
+
+.blue-sky{ color : #47afb0; }

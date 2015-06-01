@@ -5,19 +5,12 @@
 <head>
     <meta charset="utf-8">
     <title>Cat Contest</title>
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="public/css/reset-properties.css" type="text/css">
+    <link rel="stylesheet" href="public/css/style.css" type="text/css">
 </head>
 <body>
-<header>
-    <div class="content_center_header">
-        <h1>Cat Contest</h1>
-    </div>
-</header>
-<div id="content">
-    <div class="content_center_body">
-
     <?php
-
+    /*
     if(empty($_SESSION)){
         echo "<a href='/login.php'>Facebook Login</a>";
     }else{
@@ -30,15 +23,45 @@
             <a href='/logout.php'>Déconnection</a>
         <?php
     }
-
+    */
     ?>
-    </div>
-</div>
-<footer>
-    <div class="content_center_footer">
-        <p>Cat Contest 2015</p>
-    </div>
-</footer>
+    <!-- Top menu -->
+    <nav>
+        <ul>
+            <li>Upload</li>
+            <li>Mes images</li>
+            <li>Déconnexion</li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <!-- Cat rounded photo -->
+        <div id="photos-header">
+            <ul>
+                <li><img src="public/img/cup-anti horaire.png" alt="left cup"></li>
+                <li><img src="public/img/cat-logo-351.png" alt="cat logo"></li>
+                <li><img src="public/img/cup-horaire.png" alt="right cup"></li>
+        </div>
+
+        <!-- Wrapper title contest -->
+        <div id="wrapper-title-header">
+            <p><span class ="blue-sky">Concour photo</span> en ligne ! Tentez votre chance</p>
+            <span id="title-header">
+                Cat Contest
+            </span>
+            <p>Montrez votre chat et gagnez de nombreux <span class ="blue-sky">cadeaux</span></p>
+        </div>
+
+        <!-- Wrapper title enterprise -->
+        <div id="wrapper-animal-enterprise">
+            <div id="second-wrapper-animal-enterprise">
+                <span id="title-enterprise">
+                    Animal Enterprise
+                </span>
+            </div>
+        </div>
+    </header>
 <script>
     window.fbAsyncInit = function() {
         FB.init({
