@@ -1,10 +1,9 @@
 <?php
 session_start();
 
-define('PATH_ROOT', $_SERVER['DOCUMENT_ROOT'] . 'CatContest/');
-define('PATH_WEB', PATH_ROOT . 'web/');
-define('PATH_SERVICE', PATH_ROOT . 'service/');;
-
+define('PATH_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/../');
+define('PATH_WEB', $_SERVER['DOCUMENT_ROOT']);
+define('PATH_SERVICE', PATH_ROOT . 'service/');
 if($_SERVER['HTTP_HOST'] === 'localhost'){
 
     // Facebook
