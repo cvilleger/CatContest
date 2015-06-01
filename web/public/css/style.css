@@ -61,6 +61,18 @@ p{
 	text-shadow: -1px 0 white, 0 4px white, 0px 0 white, 0 -1px white;
 }
 
+#header_circleGenre{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: 2px dashed #e5dec2;
+    display: inherit;
+}
+
+#header_circleGenre img{
+    border-radius: 50%;
+}
+
 #wrapper-animal-enterprise{
 	background-color: rgb(185, 122, 87);
 	padding-top: 5px;

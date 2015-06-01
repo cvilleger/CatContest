@@ -33,7 +33,13 @@
             <?php if(empty($_SESSION)): ?>
                 <li><a href='login.php'>Login</a></li>
             <?php else: ?>
-                <li><a href='logout.php'>Déconnection</a></li>
+                <?php
+                    $FacebookAuthService = new FacebookAuthService();
+                    $userProfile = $FacebookAuthService->getUserProfile();
+                    echo '<li><div id="header_circleGenre"><img src="//graph.facebook.com/' . $userProfile->getId() . '/picture"></div>';
+                    echo '<span>' . $userProfile->getName() . '</span>' ;
+                ?>
+                <a href='logout.php'>Déconnection</a></li>
             <?php endif; ?>
         </ul>
     </nav>
