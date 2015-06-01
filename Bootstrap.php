@@ -1,11 +1,9 @@
 <?php
 session_start();
 
-define('PATH_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/..');
-define('PATH_WEB', $_SERVER['DOCUMENT_ROOT'] . '/');
-define('PATH_CONTROLLER', $_SERVER['DOCUMENT_ROOT'] . '/../controller');
-define('PATH_MODEL', $_SERVER['DOCUMENT_ROOT'] . '/../model');
-define('PATH_SERVICE', $_SERVER['DOCUMENT_ROOT'] . '/../service');;
+define('PATH_ROOT', $_SERVER['DOCUMENT_ROOT'] . 'CatContest/');
+define('PATH_WEB', PATH_ROOT . 'web/');
+define('PATH_SERVICE', PATH_ROOT . 'service/');;
 
 if($_SERVER['HTTP_HOST'] === 'localhost'){
 
@@ -14,6 +12,7 @@ if($_SERVER['HTTP_HOST'] === 'localhost'){
     define('FB_APPSECRET', 'b2ebce8739519354843579e32ccc271b');
     define('WEBURL','http://localhost/');
 
+    // PHP conf debug
     error_reporting(E_ALL);
     ini_set("display_error",1);
 } else {
@@ -22,5 +21,5 @@ if($_SERVER['HTTP_HOST'] === 'localhost'){
     define('WEBURL','https://catcontest.herokuapp.com/');
 }
 
-require_once PATH_ROOT . '/vendor/autoload.php';
-require_once PATH_SERVICE . '/FacebookAuthService.php';
+require_once PATH_ROOT . 'vendor/autoload.php';
+require_once PATH_SERVICE . 'FacebookAuthService.php';
