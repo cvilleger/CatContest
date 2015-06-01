@@ -30,7 +30,11 @@
         <ul>
             <li>Upload</li>
             <li>Mes images</li>
-            <li>Déconnexion</li>
+            <?php if(empty($_SESSION)): ?>
+                <li><a href='login.php'>Login</a></li>
+            <?php else: ?>
+                <li><a href='logout.php'>Déconnection</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
 
@@ -62,6 +66,9 @@
             </div>
         </div>
     </header>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="public/js/jquery.simplemodal.1.4.4.min.js"></script>
+    <script src="public/js/main.js"></script>
 <script>
     window.fbAsyncInit = function() {
         FB.init({
