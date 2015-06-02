@@ -113,6 +113,9 @@ class FacebookAuthService {
             die();
         }
 
+        //$userRepository = new UserRepository();
+        //$userRepository->updateUser($user_profile);
+
         return $user_profile;
     }
 

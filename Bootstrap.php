@@ -14,6 +14,14 @@ if($_SERVER['HTTP_HOST'] === 'localhost'){
     // PHP conf debug
     error_reporting(E_ALL);
     ini_set("display_error",1);
+
+    // Database
+    define('DB_TYPE','mysql');
+    define('DB_HOST','localhost');
+    define('DB_NAME','catcontest');
+    define('DB_USERNAME','root');
+    define('DB_PASSWORD','');
+
 } else {
     define('FB_APPID', '831785973542579');
     define('FB_APPSECRET', '0367e48eef2d81d799bfbaa97570715f');
