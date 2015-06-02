@@ -39,6 +39,7 @@
         </ul>
     </nav>
 
+    <?php if(!empty($_SESSION)) :?>
     <div id="facebook-profile">
         <?php
             $FacebookAuthService = new FacebookAuthService();
@@ -50,6 +51,7 @@
             <i class="fa fa-power-off fa-2"></i>
         </a>
     </div>
+    <?php endif; ?>
 
     <!-- Header -->
     <header>
