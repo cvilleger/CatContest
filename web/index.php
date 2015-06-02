@@ -7,6 +7,8 @@
     <title>Cat Contest</title>
     <link rel="stylesheet" href="public/css/reset-properties.css" type="text/css">
     <link rel="stylesheet" href="public/css/style.css" type="text/css">
+    <link rel="stylesheet" href="public/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
     <?php
@@ -28,21 +30,26 @@
     <!-- Top menu -->
     <nav>
         <ul>
-            <li>Upload</li>
-            <li>Mes images</li>
             <?php if(empty($_SESSION)): ?>
-                <li><a href='login.php'>Login</a></li>
+                <li>Vous voulez participer au concours ?<a href='login.php'> Connectez-vous !</a></li>
             <?php else: ?>
-                <?php
-                    $FacebookAuthService = new FacebookAuthService();
-                    $userProfile = $FacebookAuthService->getUserProfile();
-                    echo '<li><div id="header_circleGenre"><img src="//graph.facebook.com/' . $userProfile->getId() . '/picture"></div>';
-                    echo '<span>' . $userProfile->getName() . '</span>' ;
-                ?>
-                <a href='logout.php'>Déconnection</a></li>
+                <li>Upload</li>
+                <li>Mes Images</li>
             <?php endif; ?>
         </ul>
     </nav>
+
+    <div id="facebook-profile">
+        <?php
+            $FacebookAuthService = new FacebookAuthService();
+            $userProfile = $FacebookAuthService->getUserProfile();
+            echo '<div id="header_circleGenre"><img src="//graph.facebook.com/' . $userProfile->getId() . '/picture"></div>';
+            echo '<span>' . $userProfile->getName() . '</span>' ;
+        ?>
+        <a href='logout.php'>
+            <i class="fa fa-power-off fa-2"></i>
+        </a>
+    </div>
 
     <!-- Header -->
     <header>
