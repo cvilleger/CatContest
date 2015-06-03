@@ -7,7 +7,6 @@
     <title>Cat Contest</title>
     <link rel="stylesheet" href="public/css/reset-properties.css" type="text/css">
     <link rel="stylesheet" href="public/css/style.css" type="text/css">
-    <link rel="stylesheet" href="public/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -33,7 +32,7 @@
             <?php if(empty($_SESSION)): ?>
                 <li>Vous voulez participer au concours ?<a href='login.php'> Connectez-vous !</a></li>
             <?php else: ?>
-                <li>Upload</li>
+                <li id="uploadActionNav">Upload</li>
                 <li>Mes Images</li>
             <?php endif; ?>
         </ul>
@@ -48,14 +47,23 @@
             echo '<span>' . $userProfile->getName() . '</span>' ;
         ?>
         <a href='logout.php'>
-            <i class="fa fa-power-off fa-2"></i>
+            <i class="fa fa-power-off fa-4"></i>
         </a>
     </div>
+
+    <!-- Facebook Albums -->
+    <div id="userFacebookAlbums">
+        <i id="hideAlbumsAction" class="fa fa-times fa-2"></i>
+        <div class="wrapperAlbums"><p><img src="public/img/envoyer-ma-photo.png" alt="Envoyer ma photo"></p></div>
+        <?php for($i = 0; $i < 5; $i++): ?>
+        <div class="wrapperAlbums"></div>
+        <?php endfor; ?>
+    </div>
+
     <?php endif; ?>
 
     <!-- Header -->
     <header>
-        <!-- Cat rounded photo -->
         <div id="photos-header">
             <ul>
                 <li><img src="public/img/cup-anti horaire.png" alt="left cup"></li>

@@ -17,8 +17,8 @@ body{
 nav{
     background-color: #b03e2c;
     color: #e5dec2;
-    padding-top: 1.5%;
-    padding-bottom: 1.5%;
+    padding-top: 0.7%;
+    padding-bottom: 0.7%;
 }
 
 nav a{
@@ -128,3 +128,40 @@ p{
 **/
 
 .blue-sky{ color : #47afb0; }
+
+/**
+* Facebook albums
+**/
+
+#userFacebookAlbums{
+    width: 70%;
+    margin: auto;
+    text-align: center;
+}
+
+#userFacebookAlbums .wrapperAlbums{
+    display: inline-block;
+    margin-left: 15px;
+}
+
+#uploadActionNav, #hideAlbumsAction{
+    cursor: pointer;
+}
+
+#hideAlbumsAction{
+    width: 100%;
+    font-size: 2em;
+    margin-bottom: 1%;
+    text-align: left!important;
+}
+
+.wrapperAlbums{
+    background-color: white;
+    width: 196px;
+    height: 196px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    border-radius: 4px;
+    box-shadow: 5px 5px 15px 0px #656565;
+    vertical-align: top;
+}
