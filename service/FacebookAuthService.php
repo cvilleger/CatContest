@@ -5,6 +5,8 @@ use Facebook\FacebookRequest;
 use Facebook\FacebookRequestException;
 use Facebook\FacebookSession;
 
+require_once '../repository/UserRepository.php';
+
 /**
  * Class FacebookAuthService
  */
@@ -101,7 +103,7 @@ class FacebookAuthService {
      * @return $user_profile FacebookRequest
      */
     public function getUserProfile(){
-        $session = $this->getAuth('public_profile');
+        $session = $this->getAuth('email');
 
         try{
             $user_profile = (new FacebookRequest(
@@ -112,6 +114,9 @@ class FacebookAuthService {
             echo " with message: " . $e->getMessage();
             die();
         }
+
+        $userRepository = new UserRepository();
+        $userRepository->updateUser($user_profile);
 
         return $user_profile;
     }
