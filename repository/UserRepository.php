@@ -29,6 +29,8 @@ class UserRepository {
         }
         $res = $sth->fetchAll();
 
+        var_dump($res);
+
         //if no user in database, we create it
         if(empty($res)){
             $sql = 'INSERT INTO user (email, facebookId, firstName, gender, lastName, link,
