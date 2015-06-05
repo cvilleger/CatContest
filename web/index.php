@@ -34,8 +34,8 @@
                 <?php if(empty($_SESSION)): ?>
                     <li>Vous voulez participer au concours ?<a href='login.php'> Connectez-vous !</a></li>
                 <?php else: ?>
-                    <li id="uploadActionNav">Upload</li>
-                    <li>Mes Images</li>
+                    <li id="uploadActionNav">Choisir ma photo</li>
+                    <li id="uploadActionNav1">Ma photo</li>
                 <?php endif; ?>
             </ul>
         </nav>
@@ -57,7 +57,11 @@
     <!-- Facebook Albums -->
     <div id="userFacebookAlbums">
         <i id="hideAlbumsAction" class="fa fa-times fa-2"></i>
-        <div id="add-picture-from-facebook" class="wrapperAlbums"><img src="public/img/envoyer-ma-photo.png" alt="Envoyer ma photo"></div>
+        <div id="add-picture-from-facebook" class="wrapperAlbums">
+            <a href="#wrapper-modal-window">
+                <img src="public/img/envoyer-ma-photo.png" alt="Envoyer ma photo">
+            </a>
+        </div>
         <div class="wrapperAlbums"><img src="public/img/chat1.jpg"><span class="albumFacebookTitle">Nom album</span></div>
         <div class="wrapperAlbums"><img src="public/img/chat2.jpg"><span class="albumFacebookTitle">Nom album</span></div>
         <div class="wrapperAlbums"><img src="public/img/chat3.jpg"><span class="albumFacebookTitle">Nom album</span></div>
@@ -79,6 +83,18 @@
         </div>
     </div>
 
+    <!-- My picture -->
+    <div id="wrapper-my-picture">
+        <div id="my-picture">
+            <img src="public/img/chat1.jpg">
+        </div>
+        <div id="infos-my-picture">
+            Titre de ma photo: mon super chat<br>
+            Nombre de likes : 10<br>
+        </div>
+    </div>
+
+    <!-- Header photos -->
     <div id="photos-header">
         <ul>
             <li><img src="public/img/cup-anti horaire.png" alt="left cup"></li>

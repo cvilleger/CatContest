@@ -8,6 +8,7 @@ $( document ).ready(function() {
 
     $("#uploadActionNav").click(function(){
         $("#userFacebookAlbums").fadeIn(400);
+        $("#wrapper-my-picture").hide();
     });
 
     $("#hideAlbumsAction").click(function(){
@@ -20,5 +21,15 @@ $( document ).ready(function() {
 
     $("#add-picture-from-facebook").click(function(){
         $("#wrapper-modal-window").fadeIn(400);
+    });
+
+    /**
+     * My picture
+     */
+
+    $("#uploadActionNav1").click(function(){
+        $("#wrapper-my-picture").fadeIn(400);
+        $("#userFacebookAlbums").hide();
+        $("#wrapper-modal-window").hide();
     });
 });

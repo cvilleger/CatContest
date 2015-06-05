@@ -11,7 +11,8 @@
 }
 
 body{
-	background-color: #e5dec2; 
+	background-color: #e5dec2;
+    font-family: Gabriola;
 }
 
 nav{
@@ -142,7 +143,11 @@ p{
     margin-left: 15px;
 }
 
-#uploadActionNav, #hideAlbumsAction{
+.wrapperAlbums:hover{
+    box-shadow: none;
+}
+
+#uploadActionNav, #uploadActionNav1, #hideAlbumsAction{
     cursor: pointer;
 }
 
@@ -228,4 +233,27 @@ p{
 .title{
     color: #47afb0;
     font-size: 2em;
+}
+
+/**
+* My picture
+**/
+
+#wrapper-my-picture{
+    display: none;
+    text-align: center;
+}
+
+#my-picture, #infos-my-picture{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#infos-my-picture{
+    padding-left: 60px;
+    font-size: 1.3em;
+}
+
+#my-picture img{
+    border: 7px solid #ffffff;
 }
