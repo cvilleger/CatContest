@@ -4,16 +4,17 @@ session_start();
 define('PATH_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/../');
 define('PATH_WEB', $_SERVER['DOCUMENT_ROOT']);
 define('PATH_SERVICE', PATH_ROOT . 'service/');
+
+// PHP conf debug
+error_reporting(E_ALL);
+ini_set("display_error",1);
+
 if($_SERVER['HTTP_HOST'] === 'localhost'){
 
     // Facebook
     define('FB_APPID', '833099383411238');
     define('FB_APPSECRET', 'b2ebce8739519354843579e32ccc271b');
     define('WEBURL','http://localhost/');
-
-    // PHP conf debug
-    error_reporting(E_ALL);
-    ini_set("display_error",1);
 
     // Database
 
