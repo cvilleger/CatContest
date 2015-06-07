@@ -4,7 +4,7 @@ require_once '../service/DatabaseService.php' ;
 
 class UserRepository {
 
-    function __construct()
+    public function __construct()
     {
 
     }

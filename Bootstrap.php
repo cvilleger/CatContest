@@ -9,7 +9,7 @@ define('PATH_SERVICE', PATH_ROOT . 'service/');
 error_reporting(E_ALL);
 ini_set("display_error",1);
 
-if($_SERVER['HTTP_HOST'] === 'localhost'){
+if( $_SERVER['HTTP_HOST'] === 'localhost' ){
 
     // Facebook
     define('FB_APPID', '833099383411238');
