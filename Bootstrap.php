@@ -9,6 +9,9 @@ define('PATH_SERVICE', PATH_ROOT . 'service/');
 error_reporting(E_ALL);
 ini_set("display_error",1);
 
+$url = parse_url('mysql://b4f6fb3cd454f0:a17d94ba@eu-cdbr-west-01.cleardb.co m/heroku_b795e26d2c26048?reconnect=true');
+var_dump($url);
+
 if($_SERVER['HTTP_HOST'] === 'localhost'){
 
     // Facebook
@@ -17,7 +20,6 @@ if($_SERVER['HTTP_HOST'] === 'localhost'){
     define('WEBURL','http://localhost/');
 
     // Database
-
     define('DB_TYPE','mysql');
     define('DB_HOST','localhost');
     define('DB_NAME','catcontest');
@@ -30,11 +32,12 @@ if($_SERVER['HTTP_HOST'] === 'localhost'){
     define('WEBURL','https://catcontest.herokuapp.com/');
 
     // Database
-    define('DB_TYPE','pgsql');
-    define('DB_HOST','ec2-184-73-254-144.compute-1.amazonaws.com');
-    define('DB_NAME','d2v1v9s59qbq66');
-    define('DB_USERNAME','xjzkvstydxdowf');
-    define('DB_PASSWORD','jT6bxwXWoee69wtN0MlE2_j2jb');
+    $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+    define('DB_TYPE','mysql');
+    define('DB_HOST',$url["host"]);
+    define('DB_NAME',substr($url["path"], 1));
+    define('DB_USERNAME',$url["user"]);
+    define('DB_PASSWORD',$url["pass"]);
 }
 
 require_once PATH_ROOT . 'vendor/autoload.php';
