@@ -9,7 +9,7 @@ define('PATH_SERVICE', PATH_ROOT . 'service/');
 error_reporting(E_ALL);
 ini_set("display_error",1);
 
-$url = parse_url('mysql://b4f6fb3cd454f0:a17d94ba@eu-cdbr-west-01.cleardb.co m/heroku_b795e26d2c26048?reconnect=true');
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
 if($_SERVER['HTTP_HOST'] === 'localhost'){
 
