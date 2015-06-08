@@ -72,7 +72,7 @@ p{
 	font-family: "Chunkfive";
 	font-size: 5em;
 	color: #b03e2c;
-	text-shadow: -1px 0 white, 0 4px white, 0px 0 white, 0 -1px white;
+	text-shadow: -1px 0 white, 0 4px white, 0 0 white, 0 -1px white;
 }
 
 #header_circleGenre{
@@ -108,7 +108,7 @@ p{
 	width: 30%;
 	margin: auto;
 	border-radius: 4px;
-	box-shadow: 5px 5px 15px 0px #656565;
+	box-shadow: 5px 5px 15px 0 #656565;
 }
 
 #second-wrapper-animal-enterprise{
@@ -164,7 +164,7 @@ p{
     height: 196px;
     margin-bottom: 15px;
     margin-left: 15px;
-    box-shadow: 5px 5px 15px 0px #656565;
+    box-shadow: 5px 5px 15px 0 #656565;
     vertical-align: top;
     cursor: pointer;
 }
