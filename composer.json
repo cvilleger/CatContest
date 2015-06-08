@@ -1,5 +1,6 @@
 {
-  "name": "ChristopheVilleger/CatContest",
+  "name": "christophevilleger/catcontest",
+  "description": "A Cat Contest Facebook App",
   "license": "proprietary",
   "type": "project",
   "require": {

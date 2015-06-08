@@ -5,29 +5,13 @@
 <head>
     <meta charset="utf-8">
     <title>Cat Contest</title>
+    <link rel="icon" type="image/png" href="public/img/favicon.png" />
     <link rel="stylesheet" href="public/css/reset-properties.css" type="text/css">
     <link rel="stylesheet" href="public/css/style.css" type="text/css">
     <link rel="stylesheet" href="public/css/cookiebanner.css" type="text/css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
-    <?php
-    /*
-    if(empty($_SESSION)){
-        echo "<a href='/login.php'>Facebook Login</a>";
-    }else{
-        $FacebookAuthService = new FacebookAuthService();
-        $userProfile = $FacebookAuthService->getUserProfile();
-        $username = $userProfile->getName();
-        $userId = $userProfile->getId();
-        echo $username . '<br>';
-        ?>
-            <a href='/logout.php'>Déconnection</a>
-        <?php
-    }
-    */
-    ?>
-
     <header>
         <!-- Top menu -->
         <nav>
