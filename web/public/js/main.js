@@ -13,6 +13,7 @@ $( document ).ready(function() {
 
     $("#hideAlbumsAction").click(function(){
         $("#userFacebookAlbums").fadeOut(400);
+        $("#wrapper-modal-window").fadeOut(400);
     });
 
     /**
