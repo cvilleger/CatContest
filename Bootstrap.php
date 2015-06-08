@@ -4,19 +4,19 @@ session_start();
 define('PATH_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/../');
 define('PATH_WEB', $_SERVER['DOCUMENT_ROOT']);
 define('PATH_SERVICE', PATH_ROOT . 'service/');
-if($_SERVER['HTTP_HOST'] === 'localhost'){
+
+// PHP conf debug
+error_reporting(E_ALL);
+ini_set("display_error",1);
+
+if( $_SERVER['HTTP_HOST'] === 'localhost' ){
 
     // Facebook
     define('FB_APPID', '833099383411238');
     define('FB_APPSECRET', 'b2ebce8739519354843579e32ccc271b');
     define('WEBURL','http://localhost/');
 
-    // PHP conf debug
-    error_reporting(E_ALL);
-    ini_set("display_error",1);
-
     // Database
-
     define('DB_TYPE','mysql');
     define('DB_HOST','localhost');
     define('DB_NAME','catcontest');
@@ -29,11 +29,12 @@ if($_SERVER['HTTP_HOST'] === 'localhost'){
     define('WEBURL','https://catcontest.herokuapp.com/');
 
     // Database
-    define('DB_TYPE','pgsql');
-    define('DB_HOST','ec2-184-73-254-144.compute-1.amazonaws.com');
-    define('DB_NAME','d2v1v9s59qbq66');
-    define('DB_USERNAME','xjzkvstydxdowf');
-    define('DB_PASSWORD','jT6bxwXWoee69wtN0MlE2_j2jb');
+    $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+    define('DB_TYPE','mysql');
+    define('DB_HOST',$url["host"]);
+    define('DB_NAME',substr($url["path"], 1));
+    define('DB_USERNAME',$url["user"]);
+    define('DB_PASSWORD',$url["pass"]);
 }
 
 require_once PATH_ROOT . 'vendor/autoload.php';

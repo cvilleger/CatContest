@@ -8,5 +8,10 @@ php:
 notifications:
   email: false
 
-before_script: composer install
-script: phpunit --version
+before_script:
+  - curl -s http://getcomposer.org/installer | php
+  - php composer.phar install -n
+
+script:
+  - phpunit --version
+  - php vendor/bin/codacycoverage clover clover.xml
