@@ -7,6 +7,7 @@
     <title>Cat Contest</title>
     <link rel="stylesheet" href="public/css/reset-properties.css" type="text/css">
     <link rel="stylesheet" href="public/css/style.css" type="text/css">
+    <link rel="stylesheet" href="public/css/cookiebanner.css" type="text/css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -122,6 +123,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="public/js/jquery.simplemodal.1.4.4.min.js"></script>
+    <script src="public/js/cookiebanner.js"></script>
     <script src="public/js/main.js"></script>
     <script>
         window.fbAsyncInit = function() {
