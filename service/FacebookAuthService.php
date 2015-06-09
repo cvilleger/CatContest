@@ -175,6 +175,11 @@ class FacebookAuthService {
 
         $facebookAlbums = $facebookRequest->asArray()['data'];
 
+        return $facebookAlbums;
+    }
+
+    public function getFacebookAlbum($facebookAlbums){
+         /*
         $returnAlbums = array();
         foreach($facebookAlbums as $album){
             try{
@@ -190,9 +195,7 @@ class FacebookAuthService {
             $Photos = $facebookRequest->asArray()['data'];
 
             $returnAlbums[] = array('Infos' => $album, 'Photos' => $Photos);
-        }
-
-        return $returnAlbums;
+         */
     }
 
 }

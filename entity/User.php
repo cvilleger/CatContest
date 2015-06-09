@@ -16,7 +16,7 @@ class User {
     private $pictureName;
 
     function __construct($facebookId, $firstName, $gender, $lastName, $link,
-                         $locale, $name, $timezone, $updatedTime, $verified)
+                         $locale, $name, $timezone, $updatedTime, $verified, $pictureName = null)
     {
         $this->facebookId = $facebookId;
         $this->firstName = $firstName;
@@ -28,6 +28,7 @@ class User {
         $this->timezone = $timezone;
         $this->updatedTime = $updatedTime;
         $this->verified = $verified;
+        $this->pictureName = $pictureName;
     }
 
     /**
