@@ -53,7 +53,6 @@ class UserRepository {
 
             try {
                 $sth = $Pdo->prepare($sql);
-                print_r($inputParameters);
                 $sth->execute($inputParameters);
             }catch (Exception $e){
                 echo "Exception occured, code: " . $e->getCode();
