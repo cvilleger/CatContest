@@ -28,11 +28,11 @@ nav{
 
 nav a{
     text-decoration: none;
-    color: #47afb0;
+    color: #e5dec2;
 }
 
 nav a:hover{
-    text-decoration: underline;
+    color: #47afb0;
 }
 
 nav li{
@@ -45,6 +45,14 @@ nav li{
 nav ul{
     text-align: center;
     padding-right: 10%;
+}
+
+h1, h2{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-size: 3em;
+    color: #47afb0;
+    text-align: center;
 }
 
 p{
@@ -132,13 +140,13 @@ p{
 * Facebook albums
 **/
 
-#userFacebookAlbums{
+#userFacebookAlbums, #concurrent-gallery{
     width: 70%;
     margin: auto;
     text-align: center;
 }
 
-#userFacebookAlbums .wrapperAlbums{
+#userFacebookAlbums .wrapperAlbums, #concurrent-gallery .wrapperAlbums{
     display: inline-block;
     margin-left: 15px;
 }
@@ -176,7 +184,7 @@ p{
     padding-bottom: 10px;
     opacity: 0.6;
     display: block;
-    margin-top: -20%;
+    margin-top: -21%;
     vertical-align: top;
 }
 
@@ -185,13 +193,12 @@ p{
 **/
 
 #wrapper-modal-window{
+    display: none;
     width: 45%;
     margin: auto;
     margin-top: 2%;
-    padding-top: 2%;
     padding-bottom: 2%;
     background-color: white;
-    display: none;
     font-family: "Gabriola";
 }
 
@@ -240,7 +247,6 @@ p{
 **/
 
 #wrapper-my-picture{
-    display: none;
     text-align: center;
 }
 
