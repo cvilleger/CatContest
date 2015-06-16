@@ -59,7 +59,7 @@ class DatabaseService {
                 $this->type.':host='.$this->host.'; dbname='.$this->dbname,
                 $this->username,
                 $this->password,
-                array(PDO::ATTR_PERSISTENT => true)
+                [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
             );
 
             $req = "SET NAMES UTF8";
