@@ -155,12 +155,6 @@ p{
     margin-left: 15px;
 }
 
-.wrapperAlbums{
-    width: 211px;
-    height: 211px;
-    overflow: hidden;
-}
-
 .wrapperAlbums:hover{
     box-shadow: none;
 }
@@ -178,8 +172,9 @@ p{
 
 .wrapperAlbums{
     background-color: white;
-    width: 196px;
+    width: 211px;
     height: 196px;
+    overflow: hidden;
     margin-bottom: 15px;
     margin-left: 15px;
     box-shadow: 5px 5px 15px 0 #656565;
