@@ -18,10 +18,11 @@
         $FacebookAuthService = new FacebookAuthService();
         $facebookAlbums = $FacebookAuthService->getFacebookAlbums();
         foreach($facebookAlbums as $facebookAlbum){
-            $facebookAlbumId = $facebookAlbum->id;
-            $facebookAlbumPicture = $FacebookAuthService->getFacebookAlbumPicture($facebookAlbumId);
+            $facebookAlbumId = $facebookAlbum->cover_photo;
+            $facebookAlbumPicture = $FacebookAuthService->getFacebookAlbumPicture($facebookAlbumId)['images'];
+            $facebookPicture = $facebookAlbumPicture[2];
             echo "<div class='wrapperAlbums'>
-                    <img src='". $facebookAlbumPicture['url'] . "'>
+                    <img src='". $facebookPicture->source . "'>
                         <span class='albumFacebookTitle'>". $facebookAlbum->name ."</span>
                   </div>" ;
         }

@@ -182,7 +182,7 @@ class FacebookAuthService {
 
         try{
             $facebookRequest = (new FacebookRequest(
-                $session, 'GET', '/'.$album_id."/picture?redirect=false"
+                $session, 'GET', '/'.$album_id //."/picture?redirect=false"
             ))->execute()->getGraphObject(\Facebook\GraphObject::className());
         } catch(FacebookRequestException $e) {
             echo "Exception occured, code: " . $e->getCode();
