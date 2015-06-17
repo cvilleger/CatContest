@@ -22,9 +22,9 @@
                 $facebookAlbumPicture = $FacebookAuthService->getFacebookAlbumPicture($facebookAlbum->cover_photo)['images'];
                 $facebookPicture = $facebookAlbumPicture[2];
                 echo "<div class='wrapperAlbums'>
+                    <span class='albumFacebookTitle'>". $facebookAlbum->name ."</span>
                     <img src='". $facebookPicture->source . "'>
-                        <span class='albumFacebookTitle'>". $facebookAlbum->name ."</span>
-                  </div>" ;
+                  </div>";
             }
         }
     ?>

@@ -155,6 +155,11 @@ p{
     margin-left: 15px;
 }
 
+#userFacebookAlbums img{
+    max-height: 196px;
+    width: auto;
+}
+
 .wrapperAlbums:hover{
     box-shadow: none;
 }
@@ -171,14 +176,12 @@ p{
 }
 
 .wrapperAlbums{
-    background-color: white;
-    width: 211px;
-    height: 196px;
     overflow: hidden;
+    max-height: 196px;
+    background-color: white;
     margin-bottom: 15px;
     margin-left: 15px;
     box-shadow: 5px 5px 15px 0 #656565;
-    vertical-align: top;
     cursor: pointer;
 }
 
@@ -187,10 +190,8 @@ p{
     color: white;
     padding-top: 10px;
     padding-bottom: 10px;
-    opacity: 0.6;
+    opacity: 0.8;
     display: block;
-    margin-top: -21%;
-    vertical-align: top;
 }
 
 /**
