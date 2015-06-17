@@ -172,30 +172,26 @@ class FacebookAuthService {
             echo " with message: " . $e->getMessage();
             die();
         }
-
         $facebookAlbums = $facebookRequest->asArray()['data'];
 
         return $facebookAlbums;
     }
 
-    public function getFacebookAlbum($facebookAlbums){
-         /*
-        $returnAlbums = array();
-        foreach($facebookAlbums as $album){
-            try{
-                $facebookRequest = (new FacebookRequest(
-                    $session, 'GET', '/' . $album->id . '/photos'
-                ))->execute()->getGraphObject();
-            } catch(FacebookRequestException $e) {
-                echo "Exception occured, code: " . $e->getCode();
-                echo " with message: " . $e->getMessage();
-                die();
-            }
+    public function getFacebookAlbumPicture($album_id){
+        $session = $this->getAuth('user_photos');
 
-            $Photos = $facebookRequest->asArray()['data'];
+        try{
+            $facebookRequest = (new FacebookRequest(
+                $session, 'GET', '/'.$album_id."/picture?redirect=false"
+            ))->execute()->getGraphObject(\Facebook\GraphObject::className());
+        } catch(FacebookRequestException $e) {
+            echo "Exception occured, code: " . $e->getCode();
+            echo " with message: " . $e->getMessage();
+            die();
+        }
+        $facebookAlbums = $facebookRequest->asArray();
 
-            $returnAlbums[] = array('Infos' => $album, 'Photos' => $Photos);
-         */
+        return $facebookAlbums;
     }
 
 }

@@ -5,7 +5,6 @@
 
 <body>
     <?php require_once 'include/nav.php'; ?>
-
     <!--If logged-->
     <?php if(!empty($_SESSION)): ?>
     <!-- My picture -->

@@ -32,7 +32,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `facebookId` int(255) NOT NULL,
+  `facebookId` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `firstName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `gender` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `lastName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -43,8 +43,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `updatedTime` datetime(6) NOT NULL,
   `verified` tinyint(1) NOT NULL,
   `pictureId` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `facebookId` (`facebookId`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
