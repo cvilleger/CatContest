@@ -155,6 +155,12 @@ p{
     margin-left: 15px;
 }
 
+.wrapperAlbums{
+    width: 211px;
+    height: 211px;
+    overflow: hidden;
+}
+
 .wrapperAlbums:hover{
     box-shadow: none;
 }
