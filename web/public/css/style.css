@@ -47,6 +47,10 @@ nav ul{
     padding-right: 10%;
 }
 
+footer{
+    margin-top: 2%;
+}
+
 h1, h2{
     margin-top: 2%;
     margin-bottom: 2%;
@@ -149,6 +153,12 @@ p{
 #userFacebookAlbums .wrapperAlbums, #concurrent-gallery .wrapperAlbums{
     display: inline-block;
     margin-left: 15px;
+}
+
+.wrapperAlbums{
+    width: 211px;
+    height: 211px;
+    overflow: hidden;
 }
 
 .wrapperAlbums:hover{
