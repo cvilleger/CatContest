@@ -18,16 +18,17 @@
         $FacebookAuthService = new FacebookAuthService();
         $facebookAlbums = $FacebookAuthService->getFacebookAlbums();
         foreach($facebookAlbums as $facebookAlbum){
-            $facebookAlbumId = $facebookAlbum->cover_photo;
-            $facebookAlbumPicture = $FacebookAuthService->getFacebookAlbumPicture($facebookAlbumId)['images'];
-            $facebookPicture = $facebookAlbumPicture[2];
-            echo "<div class='wrapperAlbums'>
+            if(isset($facebookAlbum->cover_photo)){
+                $facebookAlbumPicture = $FacebookAuthService->getFacebookAlbumPicture($facebookAlbum->cover_photo)['images'];
+                $facebookPicture = $facebookAlbumPicture[2];
+                echo "<div class='wrapperAlbums'>
                     <img src='". $facebookPicture->source . "'>
                         <span class='albumFacebookTitle'>". $facebookAlbum->name ."</span>
                   </div>" ;
+            }
         }
     ?>
-
+</div>
 <!-- Modal window -->
 <div id="wrapper-modal-window">
     <i id="hideAlbumsAction" class="fa fa-times fa-2"></i>
