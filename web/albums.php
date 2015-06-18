@@ -43,8 +43,9 @@
         </form>
     </div>
 </div>
-
-<?php endif ?>
+<?php else : ?>
+    <?php header("location: /login.php" ); ?>
+<?php endif; ?>
 
 <?php require_once 'include/footer.php'; ?>
 
