@@ -1,11 +1,10 @@
-<?php require_once 'include/header.php'; ?>
-<?php require_once '../Bootstrap.php' ?>
+<?php require_once 'include/header.php';
+      require_once '../Bootstrap.php' ?>
 
 <body>
 <?php require_once 'include/nav.php'; ?>
 
 <?php if(!empty($_SESSION)): ?>
-
 <h1>Récupérez votre photo</h1>
 
 <!-- Facebook Albums -->
@@ -15,11 +14,21 @@
             <img src="public/img/envoyer-ma-photo.png" alt="Envoyer ma photo">
         </a>
     </div>
-    <div class="wrapperAlbums"><img src="public/img/chat1.jpg"><span class="albumFacebookTitle">Nom album</span></div>
-    <div class="wrapperAlbums"><img src="public/img/chat2.jpg"><span class="albumFacebookTitle">Nom album</span></div>
-    <div class="wrapperAlbums"><img src="public/img/chat3.jpg"><span class="albumFacebookTitle">Nom album</span></div>
+    <?php
+        $FacebookAuthService = new FacebookAuthService();
+        $facebookAlbums = $FacebookAuthService->getFacebookAlbums();
+        foreach($facebookAlbums as $facebookAlbum){
+            if(isset($facebookAlbum->cover_photo)){
+                $facebookAlbumPicture = $FacebookAuthService->getFacebookAlbumPicture($facebookAlbum->cover_photo)['images'];
+                $facebookPicture = $facebookAlbumPicture[2];
+                echo "<div class='wrapperAlbums'>
+                    <span class='albumFacebookTitle'>". $facebookAlbum->name ."</span>
+                    <img src='". $facebookPicture->source . "'>
+                  </div>";
+            }
+        }
+    ?>
 </div>
-
 <!-- Modal window -->
 <div id="wrapper-modal-window">
     <i id="hideAlbumsAction" class="fa fa-times fa-2"></i>
