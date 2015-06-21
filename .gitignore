@@ -1,5 +1,4 @@
 vendor
-.idea
 composer.phar
 phpunit.phar
 phpunit.cmd
