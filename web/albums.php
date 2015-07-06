@@ -5,7 +5,7 @@
 <?php require_once 'include/nav.php'; ?>
 
 <?php if(!empty($_SESSION)): ?>
-<h1>Récupérez votre photo</h1>
+<h1>Choisissez votre album photo</h1>
 
 <!-- Facebook Albums -->
 <div id="userFacebookAlbums">
@@ -21,10 +21,12 @@
             if(isset($facebookAlbum->cover_photo)){
                 $facebookAlbumPicture = $FacebookAuthService->getFacebookAlbumPicture($facebookAlbum->cover_photo)['images'];
                 $facebookPicture = $facebookAlbumPicture[2];
-                echo "<div class='wrapperAlbums'>
-                    <span class='albumFacebookTitle'>". $facebookAlbum->name ."</span>
+                echo "<a href='/photos.php?id=" . $facebookAlbum->id . "'>" ;
+                echo "<div class='wrapperAlbums' data-fbid='" . $facebookAlbum->id ."'>
+				<span class='albumFacebookTitle'>". $facebookAlbum->name ."</span>
                     <img src='". $facebookPicture->source . "'>
-                  </div>";
+                        
+                  </div></a>" ;
             }
         }
     ?>
