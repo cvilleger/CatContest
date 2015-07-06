@@ -10,7 +10,24 @@
 <!-- Facebook Albums -->
 <div id="userFacebookAlbums">
     <?php
-        $FacebookAuthService = new FacebookAuthService();
+    if(!isset($_GET['id'])){
+        header("location: /" );
+    }
+
+    $album_id = $_GET['id'];
+    $FacebookAuthService = new FacebookAuthService();
+    $facebookPhotos = $FacebookAuthService->getFacebookPhotos($album_id);
+
+    foreach($facebookPhotos as $facebookPhoto){
+        $pictureId = $facebookPhoto->id;
+        $pictureLink = $facebookPhoto->picture;
+        $pictureDate = new DateTime($facebookPhoto->created_time);
+        echo "<div class='wrapperAlbums' data-fbid='" . $facebookPhoto->id ."'>
+				<span class='albumFacebookTitle'>". $pictureDate->format('Y-m-d') ."</span>
+                    <img src='". $pictureLink . "'>
+                  </div>" ;
+    }
+
     ?>
 </div>
 
