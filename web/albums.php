@@ -23,8 +23,9 @@
                 $facebookPicture = $facebookAlbumPicture[2];
                 echo "<a href='/photos.php?id=" . $facebookAlbum->id . "'>" ;
                 echo "<div class='wrapperAlbums' data-fbid='" . $facebookAlbum->id ."'>
+				<span class='albumFacebookTitle'>". $facebookAlbum->name ."</span>
                     <img src='". $facebookPicture->source . "'>
-                        <span class='albumFacebookTitle'>". $facebookAlbum->name ."</span>
+                        
                   </div></a>" ;
             }
         }

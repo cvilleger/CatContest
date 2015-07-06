@@ -150,8 +150,7 @@ class FacebookAuthService {
             die();
         }
 
-        //echo "Posted with id: " . $response->getProperty('id');
-
+        // and get Property id
         return $response;
     }
 
