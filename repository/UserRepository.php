@@ -9,11 +9,28 @@ class UserRepository {
 
     }
 
+    public function updateUserPictureId($pictureId){
+        $FacebookAuthService = new FacebookAuthService();
+        $userProfile = $FacebookAuthService->getUserProfile();
+        $Pdo = DatabaseService::getInstance()->getPdo();
+        $facebookId = $userProfile->getId();
+        $sql = 'UPDATE user SET pictureId = :pictureId WHERE facebookId = :facebookId';
+        try{
+            $sth = $Pdo->prepare($sql);
+            $inputParameters = array(':facebookId' => $facebookId, ':pictureId' => $pictureId);
+            $sth->execute($inputParameters);
+        }catch (Exception $e){
+            echo "Exception occured, code: " . $e->getCode();
+            echo " with message: " . $e->getMessage();
+            die();
+        }
+    }
+
     /**
-     * Create user if no present
+     * Create user if no present in database
      * @param $user_profile GraphUser
      */
-    public static function updateUser( $user_profile ){
+    public function updateUser( $user_profile ){
         $Pdo = DatabaseService::getInstance()->getPdo();
         $facebookId = $user_profile->getId();
 

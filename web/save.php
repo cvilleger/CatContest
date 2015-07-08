@@ -13,9 +13,14 @@ require_once '../Bootstrap.php' ?>
         }
 
         $photoId = $_GET['id'];
-        $FacebookAuthService = new FacebookAuthService();
-        $FacebookAuthService->getFacebookPhoto($photoId);
-        echo '<img src="http://graph.facebook.com/1605607462852/picture">';
+        //$FacebookAuthService = new FacebookAuthService();
+        //$facebookPhoto = $FacebookAuthService->getFacebookPhoto($photoId);
+        //$facebookPhotoLink = $facebookPhoto['source'];
+
+        $UserRepository = new UserRepository();
+        $UserRepository->updateUserPictureId($photoId);
+
+        echo '<h2>Merci de votre participation</h2>';
         ?>
 
 <?php else : ?>

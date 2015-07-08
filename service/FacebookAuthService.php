@@ -205,13 +205,26 @@ class FacebookAuthService {
             echo " with message: " . $e->getMessage();
             die();
         }
-        $facebookAlbums = $facebookRequest->asArray();
+        $facebookPhotos = $facebookRequest->asArray();
 
-        return $facebookAlbums['data'];
+        return $facebookPhotos['data'];
     }
 
     public function getFacebookPhoto($photoId){
+        $session = $this->getAuth('user_photos');
 
+        try{
+            $facebookRequest = (new FacebookRequest(
+                $session, 'GET', '/' . $photoId
+            ))->execute()->getGraphObject();
+        } catch(FacebookRequestException $e) {
+            echo "Exception occured, code: " . $e->getCode();
+            echo " with message: " . $e->getMessage();
+            die();
+        }
+        $facebookPhoto = $facebookRequest->asArray();
+
+        return $facebookPhoto;
     }
 
 }
