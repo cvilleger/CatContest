@@ -210,4 +210,8 @@ class FacebookAuthService {
         return $facebookAlbums['data'];
     }
 
+    public function getFacebookPhoto($photoId){
+
+    }
+
 }

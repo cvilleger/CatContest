@@ -22,10 +22,11 @@
         $pictureId = $facebookPhoto->id;
         $pictureLink = $facebookPhoto->picture;
         $pictureDate = new DateTime($facebookPhoto->created_time);
+        echo "<a href='/save.php?id=" . $pictureId . "'>" ;
         echo "<div class='wrapperAlbums' data-fbid='" . $facebookPhoto->id ."'>
 				<span class='albumFacebookTitle'>". $pictureDate->format('Y-m-d') ."</span>
                     <img src='". $pictureLink . "'>
-                  </div>" ;
+                  </div></a>" ;
     }
 
     ?>
