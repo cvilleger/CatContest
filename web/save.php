@@ -13,14 +13,15 @@ require_once '../Bootstrap.php' ?>
         }
 
         $photoId = $_GET['id'];
-        //$FacebookAuthService = new FacebookAuthService();
-        //$facebookPhoto = $FacebookAuthService->getFacebookPhoto($photoId);
-        //$facebookPhotoLink = $facebookPhoto['source'];
+        $FacebookAuthService = new FacebookAuthService();
+        $facebookPhoto = $FacebookAuthService->getFacebookPhoto($photoId);
 
         $UserRepository = new UserRepository();
-        $UserRepository->updateUserPictureId($photoId);
+        $filename = $UserRepository->updateUserPicture($photoId, $facebookPhoto);
 
         echo '<h2>Merci de votre participation</h2>';
+
+        echo '<img src="public/upload/' . $filename . '.min.jpg" title="Votre photo du Cat Contest">';
         ?>
 
 <?php else : ?>
