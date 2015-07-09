@@ -15,7 +15,7 @@
             <?php
                 $UserRepository = new UserRepository();
                 $user = $UserRepository->getUser();
-                echo '<img height=200px src="public/upload/' . $user['filename'] . '.jpg">';
+                echo '<img height=250px src="public/upload/' . $user['filename'] . '.jpg">';
             ?>
         </div>
         <div id="infos-my-picture">

@@ -123,13 +123,19 @@ class UserRepository {
         $userProfile = $FacebookAuthService->getUserProfile();
         $facebookId = $userProfile->getId();
 
-        $UtilService = new UtilService();
-        $filename = $UtilService->generateRandomToken();
-
         $pictureLink = $facebookPhoto['source']; //Original picture
         $pictureLinkMin = $facebookPhoto['picture']; //130px picture
 
-        //TODO Supprimer sa previous photo
+        $user = $this->getUser();
+        $filename = $user['filename'];
+        if(!empty($filename)){
+            unlink('public/upload/' . $filename . '.jpg');
+            unlink('public/upload/' . $filename . '.min.jpg');
+        }
+
+        $UtilService = new UtilService();
+        $filename = $UtilService->generateRandomToken();
+
         //require allow_url_fopen
         $isUploadedpicture = copy($pictureLink, 'public/upload/' . $filename . '.jpg'); //Original picture
         $isUploadedpictureMin = copy($pictureLinkMin, 'public/upload/' . $filename . '.min.jpg'); //130px picture
