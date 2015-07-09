@@ -10,11 +10,27 @@ class UserRepository {
 
     }
 
-    public function getUsers(){
+    public function getUser(){
         $FacebookAuthService = new FacebookAuthService();
         $userProfile = $FacebookAuthService->getUserProfile();
         $Pdo = DatabaseService::getInstance()->getPdo();
         $facebookId = $userProfile->getId();
+        $sql = 'SELECT * FROM user WHERE facebookId = :facebookId';
+        try{
+            $sth = $Pdo->prepare($sql);
+            $inputParameters = array(':facebookId' => $facebookId);
+            $sth->execute($inputParameters);
+        }catch (Exception $e){
+            echo "Exception occured, code: " . $e->getCode();
+            echo " with message: " . $e->getMessage();
+            die();
+        }
+        $res = $sth->fetch(PDO::FETCH_ASSOC);
+        return $res;
+    }
+
+    public function getUsers(){
+        $Pdo = DatabaseService::getInstance()->getPdo();
         $sql = 'SELECT * FROM user';
         try{
             $sth = $Pdo->prepare($sql);
@@ -24,7 +40,7 @@ class UserRepository {
             echo " with message: " . $e->getMessage();
             die();
         }
-        $res = $sth->fetchAll();
+        $res = $sth->fetchAll(PDO::FETCH_ASSOC);
         return $res;
     }
 
