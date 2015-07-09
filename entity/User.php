@@ -14,10 +14,29 @@ class User {
     private $updatedTime;
     private $verified;
     private $pictureName;
+    private $filename;
 
-    function __construct($facebookId, $firstName, $gender, $lastName, $link,
-                         $locale, $name, $timezone, $updatedTime, $verified, $pictureName = null)
+    /**
+     * User constructor.
+     * @param $id
+     * @param $facebookId
+     * @param $firstName
+     * @param $gender
+     * @param $lastName
+     * @param $link
+     * @param $locale
+     * @param $name
+     * @param $timezone
+     * @param $updatedTime
+     * @param $verified
+     * @param $pictureName
+     * @param $filename
+     */
+    public function __construct($id, $facebookId, $firstName, $gender, $lastName,
+                                $link, $locale, $name, $timezone, $updatedTime,
+                                $verified, $pictureName = null, $filename = null)
     {
+        $this->id = $id;
         $this->facebookId = $facebookId;
         $this->firstName = $firstName;
         $this->gender = $gender;
@@ -29,7 +48,9 @@ class User {
         $this->updatedTime = $updatedTime;
         $this->verified = $verified;
         $this->pictureName = $pictureName;
+        $this->filename = $filename;
     }
+
 
     /**
      * @return mixed
@@ -215,7 +236,20 @@ class User {
         $this->pictureName = $pictureName;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFilename()
+    {
+        return $this->filename;
+    }
 
-
+    /**
+     * @param mixed $filename
+     */
+    public function setFilename($filename)
+    {
+        $this->filename = $filename;
+    }
 
 }
