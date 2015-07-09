@@ -193,4 +193,38 @@ class FacebookAuthService {
         return $facebookAlbums;
     }
 
+    public function getFacebookPhotos($album_id){
+        $session = $this->getAuth('user_photos');
+
+        try{
+            $facebookRequest = (new FacebookRequest(
+                $session, 'GET', '/' . $album_id . "/photos"
+            ))->execute()->getGraphObject();
+        } catch(FacebookRequestException $e) {
+            echo "Exception occured, code: " . $e->getCode();
+            echo " with message: " . $e->getMessage();
+            die();
+        }
+        $facebookPhotos = $facebookRequest->asArray();
+
+        return $facebookPhotos['data'];
+    }
+
+    public function getFacebookPhoto($photoId){
+        $session = $this->getAuth('user_photos');
+
+        try{
+            $facebookRequest = (new FacebookRequest(
+                $session, 'GET', '/' . $photoId
+            ))->execute()->getGraphObject();
+        } catch(FacebookRequestException $e) {
+            echo "Exception occured, code: " . $e->getCode();
+            echo " with message: " . $e->getMessage();
+            die();
+        }
+        $facebookPhoto = $facebookRequest->asArray();
+
+        return $facebookPhoto;
+    }
+
 }

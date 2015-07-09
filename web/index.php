@@ -1,6 +1,7 @@
 <?php
     require_once '../Bootstrap.php' ;
     require_once 'include/header.php';
+    require_once '../repository/UserRepository.php';
 ?>
 
 <body>
@@ -11,7 +12,11 @@
     <h2>Ma photo</h2>
     <div id="wrapper-my-picture">
         <div id="my-picture">
-            <img src="public/img/chat1.jpg">
+            <?php
+                $UserRepository = new UserRepository();
+                $user = $UserRepository->getUser();
+                echo '<img height=250px src="public/upload/' . $user['filename'] . '.jpg">';
+            ?>
         </div>
         <div id="infos-my-picture">
             Titre de ma photo: mon super chat<br>
@@ -25,6 +30,15 @@
         <div class="wrapperAlbums"><img src="public/img/chat4.jpg"><span class="albumFacebookTitle">Margot Hanszechuen</span></div>
         <div class="wrapperAlbums"><img src="public/img/chat5.jpg"><span class="albumFacebookTitle">Baptiste Linel</span></div>
         <div class="wrapperAlbums"><img src="public/img/chat6.jpg"><span class="albumFacebookTitle">Christophe Villeger</span></div>
+        <?php
+            $UserRepository = new UserRepository();
+            $users = $UserRepository->getUsers();
+            foreach($users as $user){
+                echo '<div class="wrapperAlbums">';
+                echo '<img src="public/upload/' . $user['filename'] . '.min.jpg">';
+                echo '</div>';
+            }
+        ?>
     </div>
     <?php endif ?>
 
@@ -41,7 +55,7 @@
 
     <!-- Wrapper title contest -->
     <div id="wrapper-title-header">
-        <p><span class ="blue-sky">Concour photo</span> en ligne ! Tentez votre chance</p>
+        <p><span class ="blue-sky">Concours photo</span> en ligne ! Tentez votre chance</p>
         <span id="title-header">
             Cat Contest
         </span>

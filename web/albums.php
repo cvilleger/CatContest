@@ -25,7 +25,6 @@
                 echo "<div class='wrapperAlbums' data-fbid='" . $facebookAlbum->id ."'>
 				<span class='albumFacebookTitle'>". $facebookAlbum->name ."</span>
                     <img src='". $facebookPicture->source . "'>
-                        
                   </div></a>" ;
             }
         }
