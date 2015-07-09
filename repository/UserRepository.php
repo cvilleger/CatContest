@@ -9,6 +9,28 @@ class UserRepository {
 
     }
 
+    public function getUsers(){
+        $FacebookAuthService = new FacebookAuthService();
+        $userProfile = $FacebookAuthService->getUserProfile();
+        $Pdo = DatabaseService::getInstance()->getPdo();
+        $facebookId = $userProfile->getId();
+        $sql = 'SELECT * FROM user';
+        try{
+            $sth = $Pdo->prepare($sql);
+            $sth->execute();
+        }catch (Exception $e){
+            echo "Exception occured, code: " . $e->getCode();
+            echo " with message: " . $e->getMessage();
+            die();
+        }
+        $res = $sth->fetchAll();
+        return $res;
+    }
+
+    /**
+     * Update an User PictureId variable with $picture Id
+     * @param $pictureId
+     */
     public function updateUserPictureId($pictureId){
         $FacebookAuthService = new FacebookAuthService();
         $userProfile = $FacebookAuthService->getUserProfile();
