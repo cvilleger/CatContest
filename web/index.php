@@ -40,7 +40,11 @@
             $users = $UserRepository->getUsers();
             foreach($users as $user){
                 echo '<div class="wrapperAlbums">';
-                echo '<img src="public/upload/' . $user['filename'] . '.min.jpg">';
+                if(!empty($user['filename'])){
+                    echo '<img src="public/upload/' . $user['filename'] . '.min.jpg">';
+                }else{
+                    echo '<img src="public/upload/empty.min.jpg">';
+                }
                 echo '</div>';
             }
         ?>
