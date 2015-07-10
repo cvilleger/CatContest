@@ -37,7 +37,7 @@
         <div class="wrapperAlbums"><img src="public/img/chat6.jpg"><span class="albumFacebookTitle">Christophe Villeger</span></div>
         <?php
             $UserRepository = new UserRepository();
-            $users = $UserRepository->getUsers();
+            $users = $UserRepository->getUsersWithPicture();
             foreach($users as $user){
                 echo '<div class="wrapperAlbums">';
                 if(!empty($user['filename'])){

@@ -29,9 +29,9 @@ class UserRepository {
         return $res;
     }
 
-    public function getUsers(){
+    public function getUsersWithPicture(){
         $Pdo = DatabaseService::getInstance()->getPdo();
-        $sql = 'SELECT * FROM user';
+        $sql = 'SELECT * FROM user WHERE pictureId IS NOT NULL';
         try{
             $sth = $Pdo->prepare($sql);
             $sth->execute();
