@@ -1,6 +1,7 @@
 <?php
 
-class User {
+class User
+{
 
     private $id;
     private $facebookId;
@@ -13,12 +14,12 @@ class User {
     private $timezone;
     private $updatedTime;
     private $verified;
-    private $pictureName;
-    private $filename;
+    private $pictureId;
+    private $pictureLink;
+    private $pictureLinkMin;
 
     /**
      * User constructor.
-     * @param $id
      * @param $facebookId
      * @param $firstName
      * @param $gender
@@ -29,14 +30,13 @@ class User {
      * @param $timezone
      * @param $updatedTime
      * @param $verified
-     * @param $pictureName
-     * @param $filename
+     * @param $pictureId
+     * @param $pictureLink
+     * @param $pictureLinkMin
      */
-    public function __construct($id, $facebookId, $firstName, $gender, $lastName,
-                                $link, $locale, $name, $timezone, $updatedTime,
-                                $verified, $pictureName = null, $filename = null)
+    public function __construct($facebookId, $firstName, $gender, $lastName, $link, $locale, $name,$timezone,
+                                $updatedTime, $verified, $pictureId = null, $pictureLink = null, $pictureLinkMin = null)
     {
-        $this->id = $id;
         $this->facebookId = $facebookId;
         $this->firstName = $firstName;
         $this->gender = $gender;
@@ -47,10 +47,10 @@ class User {
         $this->timezone = $timezone;
         $this->updatedTime = $updatedTime;
         $this->verified = $verified;
-        $this->pictureName = $pictureName;
-        $this->filename = $filename;
+        $this->pictureId = $pictureId;
+        $this->pictureLink = $pictureLink;
+        $this->pictureLinkMin = $pictureLinkMin;
     }
-
 
     /**
      * @return mixed
@@ -221,35 +221,51 @@ class User {
     }
 
     /**
-     * @return mixed
+     * @return null
      */
-    public function getPictureName()
+    public function getPictureId()
     {
-        return $this->pictureName;
+        return $this->pictureId;
     }
 
     /**
-     * @param mixed $pictureName
+     * @param null $pictureId
      */
-    public function setPictureName($pictureName)
+    public function setPictureId($pictureId)
     {
-        $this->pictureName = $pictureName;
+        $this->pictureId = $pictureId;
     }
 
     /**
-     * @return mixed
+     * @return null
      */
-    public function getFilename()
+    public function getPictureLink()
     {
-        return $this->filename;
+        return $this->pictureLink;
     }
 
     /**
-     * @param mixed $filename
+     * @param null $pictureLink
      */
-    public function setFilename($filename)
+    public function setPictureLink($pictureLink)
     {
-        $this->filename = $filename;
+        $this->pictureLink = $pictureLink;
+    }
+
+    /**
+     * @return null
+     */
+    public function getPictureLinkMin()
+    {
+        return $this->pictureLinkMin;
+    }
+
+    /**
+     * @param null $pictureLinkMin
+     */
+    public function setPictureLinkMin($pictureLinkMin)
+    {
+        $this->pictureLinkMin = $pictureLinkMin;
     }
 
 }

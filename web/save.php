@@ -17,11 +17,11 @@ require_once '../Bootstrap.php' ?>
         $facebookPhoto = $FacebookAuthService->getFacebookPhoto($photoId);
 
         $UserRepository = new UserRepository();
-        $filename = $UserRepository->updateUserPicture($photoId, $facebookPhoto);
+        $UserRepository->updateUserPicture($photoId, $facebookPhoto);
 
         echo '<h2>Merci de votre participation</h2>';
 
-        echo '<img src="public/upload/' . $filename . '.min.jpg" title="Votre photo du Cat Contest">';
+        echo '<img height=300px src="' . $facebookPhoto['source'] . '" title="Votre photo du Cat Contest">';
         ?>
 
 <?php else : ?>

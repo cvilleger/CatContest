@@ -24,7 +24,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `updatedTime` datetime(6) NOT NULL,
   `verified` tinyint(1) NOT NULL,
   `pictureId` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `filename` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pictureLink` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pictureLinkMin` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
