@@ -15,9 +15,9 @@
             <?php
                 $UserRepository = new UserRepository();
                 $user = $UserRepository->getUser();
-                $filename = $user['filename'];
-                if(!empty($filename)){
-                    echo '<img height=250px src="public/upload/' . $user['filename'] . '.jpg">';
+                $pictureLink = $user['pictureLink'];
+                if(!empty($pictureLink)){
+                    echo '<img height=250px src="' . $pictureLink . '">';
                 }else{
                     echo '<img height=250px src="public/upload/empty.jpg">';
                 }
@@ -39,9 +39,10 @@
             $UserRepository = new UserRepository();
             $users = $UserRepository->getUsersWithPicture();
             foreach($users as $user){
+                $pictureLinkMin = $user['pictureLinkMin'];
                 echo '<div class="wrapperAlbums">';
-                if(!empty($user['filename'])){
-                    echo '<img src="public/upload/' . $user['filename'] . '.min.jpg">';
+                if(!empty($pictureLinkMin)){
+                    echo '<img src="' . $pictureLinkMin . '">';
                 }else{
                     echo '<img src="public/upload/empty.min.jpg">';
                 }

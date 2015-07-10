@@ -1,7 +1,6 @@
 <?php
 
 require_once '../service/DatabaseService.php' ;
-require_once '../service/UtilService.php';
 
 class UserRepository {
 
@@ -26,6 +25,7 @@ class UserRepository {
             die();
         }
         $res = $sth->fetch(PDO::FETCH_ASSOC);
+
         return $res;
     }
 
@@ -42,27 +42,6 @@ class UserRepository {
         }
         $res = $sth->fetchAll(PDO::FETCH_ASSOC);
         return $res;
-    }
-
-    /**
-     * Update an User PictureId variable with $picture Id
-     * @param $pictureId
-     */
-    public function updateUserPictureId($pictureId){
-        $FacebookAuthService = new FacebookAuthService();
-        $userProfile = $FacebookAuthService->getUserProfile();
-        $Pdo = DatabaseService::getInstance()->getPdo();
-        $facebookId = $userProfile->getId();
-        $sql = 'UPDATE user SET pictureId = :pictureId WHERE facebookId = :facebookId';
-        try{
-            $sth = $Pdo->prepare($sql);
-            $inputParameters = array(':facebookId' => $facebookId, ':pictureId' => $pictureId);
-            $sth->execute($inputParameters);
-        }catch (Exception $e){
-            echo "Exception occured, code: " . $e->getCode();
-            echo " with message: " . $e->getMessage();
-            die();
-        }
     }
 
     /**
@@ -121,35 +100,22 @@ class UserRepository {
     public function updateUserPicture($pictureId, $facebookPhoto){
         $FacebookAuthService = new FacebookAuthService();
         $userProfile = $FacebookAuthService->getUserProfile();
-        $facebookId = $userProfile->getId();
 
+        $facebookId = $userProfile->getId();
         $pictureLink = $facebookPhoto['source']; //Original picture
         $pictureLinkMin = $facebookPhoto['picture']; //130px picture
 
-        $user = $this->getUser();
-        $filename = $user['filename'];
-        if(!empty($filename)){
-            unlink('public/upload/' . $filename . '.jpg');
-            unlink('public/upload/' . $filename . '.min.jpg');
-        }
-
-        $UtilService = new UtilService();
-        $filename = $UtilService->generateRandomToken();
-
-        //require allow_url_fopen
-        $isUploadedpicture = copy($pictureLink, 'public/upload/' . $filename . '.jpg'); //Original picture
-        $isUploadedpictureMin = copy($pictureLinkMin, 'public/upload/' . $filename . '.min.jpg'); //130px picture
-
-        // Si mes photos ont bien �t� envoy� sur le server
-        if($isUploadedpicture === true && $isUploadedpictureMin === true){
-            //TODO unlink() previous picture et pictureMin , else return false/Exception.
-        }
-
         $Pdo = DatabaseService::getInstance()->getPdo();
-        $sql = 'UPDATE user SET pictureId = :pictureId, filename = :filename WHERE facebookId = :facebookId';
+        $sql = 'UPDATE user SET pictureId = :pictureId, pictureLink = :pictureLink, pictureLinkMin = :pictureLinkMin
+                WHERE facebookId = :facebookId';
         try{
             $sth = $Pdo->prepare($sql);
-            $inputParameters = array(':facebookId' => $facebookId, ':filename' => $filename, ':pictureId' => $pictureId);
+            $inputParameters = array(
+                ':facebookId' => $facebookId,
+                ':pictureId' => $pictureId,
+                ':pictureLink' => $pictureLink,
+                ':pictureLinkMin' => $pictureLinkMin
+            );
             $sth->execute($inputParameters);
         }catch (Exception $e){
             echo "Exception occured, code: " . $e->getCode();
@@ -157,7 +123,6 @@ class UserRepository {
             die();
         }
 
-        return $filename;
     }
 
 }
