@@ -38,15 +38,17 @@
         <?php
             $UserRepository = new UserRepository();
             $users = $UserRepository->getUsersWithPicture();
+            $nbParticipant = count($users);
+                echo '<h2>Nombre de participants : ' . $nbParticipant . '</h2>';
             foreach($users as $user){
                 $pictureLinkMin = $user['pictureLinkMin'];
-                echo '<div class="wrapperAlbums">';
-                if(!empty($pictureLinkMin)){
-                    echo '<img src="' . $pictureLinkMin . '">';
-                }else{
-                    echo '<img src="public/upload/empty.min.jpg">';
-                }
-                echo '</div>';
+                echo '<div class="wrapperAlbums"><img src="' . $pictureLinkMin . '"></div>';
+                echo '<div class="fb-like"
+                        data-href="https://www.facebook.com/photo.php?fbid=' . $user['pictureId'] . '"
+                        data-layout="box_count"
+                        data-action="like"
+                        data-show-faces="true"
+                        data-share="true"></div>';
             }
         ?>
     </div>
