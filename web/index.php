@@ -46,7 +46,7 @@
                 echo '<div class="fb-like"
                         data-href="https://www.facebook.com/photo.php?fbid=' . $user['pictureId'] . '"
                         data-layout="box_count"
-                        data-action="like"
+                        data-action="Voter"
                         data-show-faces="true"
                         data-share="true"></div>';
             }
