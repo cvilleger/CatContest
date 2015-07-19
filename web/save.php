@@ -19,9 +19,12 @@ require_once '../Bootstrap.php' ?>
         $UserRepository = new UserRepository();
         $UserRepository->updateUserPicture($photoId, $facebookPhoto);
 
-        echo '<h2>Merci de votre participation</h2>';
+        echo '<img style="display: block; margin-left: auto; margin-right: auto;" height=300px src="' . $facebookPhoto['source'] . '" title="Votre photo du Cat Contest">';
 
-        echo '<img height=300px src="' . $facebookPhoto['source'] . '" title="Votre photo du Cat Contest">';
+        echo '<h2>Merci de votre participation, redirection en cours...</h2>';
+        echo '</br>';
+
+        echo '<img style="display: block; margin-left: auto; margin-right: auto; border-radius: 50%;" src="public/img/cat-loading.gif" title="Chargement de votre photo">';
         ?>
 
 <?php else : ?>
@@ -31,4 +34,12 @@ require_once '../Bootstrap.php' ?>
 <?php require_once 'include/footer.php'; ?>
 
 </body>
+<script type="application/javascript">
+    $(function() {
+        function redirectHome(){
+            document.location.href = "/";
+        }
+        setTimeout(redirectHome, 4000);
+    });
+</script>
 </html>

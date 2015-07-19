@@ -38,8 +38,6 @@
         <?php
             $UserRepository = new UserRepository();
             $users = $UserRepository->getUsersWithPicture();
-            $nbParticipant = count($users);
-                echo '<h2>Nombre de participants : ' . $nbParticipant . '</h2>';
             foreach($users as $user){
                 $pictureLinkMin = $user['pictureLinkMin'];
                 echo '<div class="wrapperAlbums"><img src="' . $pictureLinkMin . '"></div>';
