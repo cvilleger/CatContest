@@ -270,3 +270,10 @@ p{
     border: 7px solid #ffffff;
 }
 
+/**
+* Button like
+**/
+.fb-btn{
+    margin-bottom: 5px;
+}
+

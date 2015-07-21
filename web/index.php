@@ -5,6 +5,8 @@
 ?>
 
 <body>
+<div id="fb-root"></div>
+
     <?php require_once 'include/nav.php'; ?>
     <!--If logged-->
     <?php if(!empty($_SESSION)): ?>
@@ -36,17 +38,24 @@
         <div class="wrapperAlbums"><img src="public/img/chat5.jpg"><span class="albumFacebookTitle">Baptiste Linel</span></div>
         <div class="wrapperAlbums"><img src="public/img/chat6.jpg"><span class="albumFacebookTitle">Christophe Villeger</span></div>
         <?php
+        $date = new DateTime();
+        $dateFormated = $date->format('Y-m'); //Current year and month
+        $dateHashed = crypt($dateFormated, 'sa6546me4fgbqa+pdz@ok4p8fghsrg');
             $UserRepository = new UserRepository();
             $users = $UserRepository->getUsersWithPicture();
+            if(empty($users)){
+                echo '<h2>Soyer la première personne à participer au Cat Contest de ce mois !</h2>';
+            }
             foreach($users as $user){
                 $pictureLinkMin = $user['pictureLinkMin'];
-                echo '<div class="wrapperAlbums"><img src="' . $pictureLinkMin . '"></div>';
-                echo '<div class="fb-like"
-                        data-href="https://www.facebook.com/photo.php?fbid=' . $user['pictureId'] . '"
-                        data-layout="box_count"
-                        data-action="Voter"
-                        data-show-faces="true"
-                        data-share="true"></div>';
+                echo '<div class="wrapperAlbums"><img src="' . $pictureLinkMin . '">';
+                echo '<div class="clear"></div>';
+                echo '<div class="fb-like fb-btn" data-href="https://catcontest.herokuapp.com/?fbid=' . $user['pictureId'] . '&code=' . $dateHashed . '"
+                    data-layout="button_count"
+                    data-show-faces="true"
+                    data-share="false"
+                    data-colorscheme="dark"
+                    ></div></div>';
             }
         ?>
     </div>

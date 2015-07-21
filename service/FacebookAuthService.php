@@ -22,7 +22,7 @@ class FacebookAuthService {
      * @return string
      */
     public function getSimpleLoginUrl(){
-        return $this->_helper->getLoginUrl();
+        return $this->getAuth('email');
     }
 
     /**
@@ -36,6 +36,7 @@ class FacebookAuthService {
         } else {
             $session = $this->_helper->getSessionFromRedirect();
         }
+
 
         //If first time (or session cleared)
         if(!$session){
@@ -92,7 +93,8 @@ class FacebookAuthService {
             //User have not been asked for this permission
             $params = array('scope' => $permission);
             $loginUrl = $this->_helper->getLoginUrl($params);
-            header("location: $loginUrl" );
+            echo '<script language="Javascript">document.location.replace("' . $loginUrl . '")</script>';
+            //header("location: $loginUrl" );
             exit;
         }
 
@@ -126,11 +128,14 @@ class FacebookAuthService {
      * @param bool $isURL
      * @return mixed
      */
-    public function postPhotoWithMsg($path, $msg, $isURL = false){
+    public function postPhotoWithMsg($path, $msg = false, $isURL = false){
         $session = $this->getAuth('publish_actions');
 
+        if($msg === false){
+            $msg = 'Ma photo de concours CatContest !';
+        }
         $postParam = array('message' => $msg);
-        if($isURL){
+        if($isURL === true){
             $postParam['url'] = $path;
         }else{
             $postParam['source'] = $path;
