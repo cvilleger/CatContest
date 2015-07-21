@@ -125,4 +125,20 @@ class UserRepository {
 
     }
 
+    public function getPictureLinkByPictureId($pictureId){
+        $Pdo = DatabaseService::getInstance()->getPdo();
+        $sql = 'SELECT pictureLink FROM user WHERE pictureId = :pictureId';
+        try{
+            $sth = $Pdo->prepare($sql);
+            $inputParameters = array(':pictureId' => $pictureId);
+            $sth->execute($inputParameters);
+        }catch (Exception $e){
+            echo "Exception occured, code: " . $e->getCode();
+            echo " with message: " . $e->getMessage();
+            die();
+        }
+        $res = $sth->fetch(PDO::FETCH_ASSOC);
+        return $res;
+    }
+
 }

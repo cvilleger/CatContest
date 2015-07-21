@@ -50,7 +50,7 @@
                 $pictureLinkMin = $user['pictureLinkMin'];
                 echo '<div class="wrapperAlbums"><img src="' . $pictureLinkMin . '">';
                 echo '<div class="clear"></div>';
-                echo '<div class="fb-like fb-btn" data-href="https://catcontest.herokuapp.com/?fbid=' . $user['pictureId'] . '&code=' . $dateHashed . '"
+                echo '<div class="fb-like fb-btn" data-href="https://catcontest.herokuapp.com/maphoto.php?id=' . $user['pictureId'] . '&code=' . $dateHashed . '"
                     data-layout="button_count"
                     data-show-faces="true"
                     data-share="false"
