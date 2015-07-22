@@ -11,7 +11,10 @@
     <!--If logged-->
     <?php if(!empty($_SESSION)): ?>
     <!-- My picture -->
-    <h2>Ma photo</h2>
+    <?php
+        $date = new DateTime();
+        echo '<h2>Ma photo pour le concours du [' . $date->format('m / Y') . ']</h2>';
+    ?>
     <div id="wrapper-my-picture">
         <div id="my-picture">
             <?php
