@@ -187,6 +187,8 @@ class UserRepository {
             }
         }
 
+        var_dump($likes);var_dump($pictureIds);
+
         return $key + 1;
     }
 
