@@ -153,6 +153,7 @@ class UserRepository {
         if($user['pictureId'] == false){
             return false;
         }
+        $userPictureId = $user['pictureId'];
 
         $date = new DateTime();
         $dateFormated = $date->format('Y-m'); //Current year and month
@@ -181,17 +182,13 @@ class UserRepository {
         // Trie les donn�es par like DESC, pictureId DESC
         // Ajoute $data en tant que dernier param�tre, pour trier par la cl� commune
         array_multisort($likes, SORT_DESC, $pictureIds, SORT_DESC, $data);
-        var_dump($pictureIds);
-        $iterator = 1;
+        $position = 1;
         foreach($pictureIds as $currentPictureId){
-            if ($pictureId == $currentPictureId){
-                $position = $iterator;
-                break;
+            if ($userPictureId == $currentPictureId){
+                return $position;
             }
-            $iterator++;
+            $position++;
         }
-
-        return $position;
     }
 
 }
