@@ -17,6 +17,7 @@ class User
     private $pictureId;
     private $pictureLink;
     private $pictureLinkMin;
+    private $date_win;
 
     /**
      * User constructor.
@@ -33,9 +34,11 @@ class User
      * @param $pictureId
      * @param $pictureLink
      * @param $pictureLinkMin
+     * @param $date_win
      */
     public function __construct($facebookId, $firstName, $gender, $lastName, $link, $locale, $name,$timezone,
-                                $updatedTime, $verified, $pictureId = null, $pictureLink = null, $pictureLinkMin = null)
+                                $updatedTime, $verified, $pictureId = null, $pictureLink = null,
+                                $pictureLinkMin = null, $date_win = null)
     {
         $this->facebookId = $facebookId;
         $this->firstName = $firstName;
@@ -50,6 +53,7 @@ class User
         $this->pictureId = $pictureId;
         $this->pictureLink = $pictureLink;
         $this->pictureLinkMin = $pictureLinkMin;
+        $this->date_win = $date_win;
     }
 
     /**
@@ -266,6 +270,22 @@ class User
     public function setPictureLinkMin($pictureLinkMin)
     {
         $this->pictureLinkMin = $pictureLinkMin;
+    }
+
+    /**
+     * @return null
+     */
+    public function getDateWin()
+    {
+        return $this->date_win;
+    }
+
+    /**
+     * @param null $date_win
+     */
+    public function setDateWin($date_win)
+    {
+        $this->date_win = $date_win;
     }
 
 }
