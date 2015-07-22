@@ -245,7 +245,7 @@ class UserRepository {
      * Get the user who have the most like for the associated pictureId
      * @return array user
      */
-    private function getUserMostLiked(){
+    public function getUserMostLiked(){
         $data = $this->getClassementWithPictureIdAndLikeCount();
 
         $pictureIds = array();
