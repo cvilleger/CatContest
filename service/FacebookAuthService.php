@@ -92,9 +92,13 @@ class FacebookAuthService {
         } else {
             //User have not been asked for this permission
             $params = array('scope' => $permission);
-            $loginUrl = $this->_helper->getLoginUrl($params);
+            if($permission == 'user_photos'){
+                $helper = new FacebookRedirectLoginHelper('http://localhost/albums.php');
+                $loginUrl = $helper->getLoginUrl($params);
+            }else{
+                $loginUrl = $this->_helper->getLoginUrl($params);
+            }
             echo '<script language="Javascript">document.location.replace("' . $loginUrl . '")</script>';
-            //header("location: $loginUrl" );
             exit;
         }
 
@@ -121,36 +125,6 @@ class FacebookAuthService {
         $userRepository->updateUser($user_profile);
 
         return $user_profile;
-    }
-
-    /**
-     * Post photo url to facebook
-     * @param $path
-     * @return mixed
-     */
-    public function postPhotoWithMsg($path, $msg = false){
-        $session = $this->getAuth('publish_actions');
-
-        if($msg === false){
-            $msg = 'Ma photo de concours CatContest !';
-        }
-        $postParam = array('message' => $msg);
-        $postParam['url'] = $path;
-        try{
-            $response = (new FacebookRequest(
-                $session, 'POST', '/me/photos', $postParam
-            ))->execute()->getGraphObject();
-
-            // If you're not using PHP 5.5 or later, change the file reference to:
-            // 'source' => '@/path/to/file.name'
-
-        } catch(FacebookRequestException $e) {
-            echo "Exception occured, code: " . $e->getCode();
-            echo " with message: " . $e->getMessage();
-            die();
-        }
-
-        return $response->asArray();
     }
 
     /**
