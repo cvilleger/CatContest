@@ -181,6 +181,7 @@ class UserRepository {
         // Trie les donn�es par like DESC, pictureId DESC
         // Ajoute $data en tant que dernier param�tre, pour trier par la cl� commune
         array_multisort($likes, SORT_DESC, $pictureIds, SORT_DESC, $data);
+        var_dump($pictureIds);
         $position = count($pictureIds);
         foreach($pictureIds as $currentPictureId){
             if ($pictureId == $currentPictureId){
