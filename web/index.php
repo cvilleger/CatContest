@@ -43,7 +43,7 @@
                 if ($classement === false){
                     echo 'Partiper au concours pour être classer !';
                 } else {
-                    echo $UserRepository->getUserClassement() . ' / ' . count($UserRepository->getUsersWithPicture());
+                    echo $classement . ' / ' . count($UserRepository->getUsersWithPicture());
                 }
             ?>
         </div>
