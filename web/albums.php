@@ -14,7 +14,7 @@
         $facebookAlbums = $FacebookAuthService->getFacebookAlbums();
         foreach($facebookAlbums as $facebookAlbum){
             if(isset($facebookAlbum->cover_photo)){
-                $facebookAlbumPicture = $FacebookAuthService->getFacebookAlbumPicture($facebookAlbum->cover_photo)['images'];
+                $facebookAlbumPicture = $FacebookAuthService->getFacebookAlbum($facebookAlbum->cover_photo)['images'];
                 $facebookPicture = $facebookAlbumPicture[2];
                 echo "<a href='/photos.php?id=" . $facebookAlbum->id . "'>" ;
                 echo "<div class='wrapperAlbums' data-fbid='" . $facebookAlbum->id ."'>

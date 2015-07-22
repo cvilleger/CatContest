@@ -10,6 +10,11 @@ class UserRepository {
 
     }
 
+    /**
+     * Get the current user by asking to Facebook API
+     * and deliver him from database via facebookId
+     * @return array user
+     */
     public function getUser(){
         $FacebookAuthService = new FacebookAuthService();
         $userProfile = $FacebookAuthService->getUserProfile();
@@ -30,6 +35,10 @@ class UserRepository {
         return $res;
     }
 
+    /**
+     * Get all users who have a pictureId
+     * @return array
+     */
     public function getUsersWithPicture(){
         $Pdo = DatabaseService::getInstance()->getPdo();
         $sql = "SELECT * FROM user WHERE pictureId IS NOT NULL AND pictureId <> '' ";
@@ -46,7 +55,8 @@ class UserRepository {
     }
 
     /**
-     * Create user if no present in database
+     * Create user in DB if he is connected and not present.
+     * We check that by facebookId
      * @param $user_profile GraphUser
      */
     public function updateUser( $user_profile ){
@@ -98,6 +108,11 @@ class UserRepository {
         }
     }
 
+    /**
+     * Update a user with a pictureId, a pictureLink and a pictureLinkMin
+     * @param $pictureId
+     * @param $facebookPhoto
+     */
     public function updateUserPicture($pictureId, $facebookPhoto){
         $FacebookAuthService = new FacebookAuthService();
         $userProfile = $FacebookAuthService->getUserProfile();
@@ -148,6 +163,11 @@ class UserRepository {
         return $res;
     }
 
+    /**
+     * Get a user by a pictureId
+     * @param $pictureId
+     * @return array user
+     */
     public function getUserByPictureId($pictureId){
         $Pdo = DatabaseService::getInstance()->getPdo();
         $sql = 'SELECT * FROM user WHERE pictureId = :pictureId';
@@ -164,6 +184,10 @@ class UserRepository {
         return $res;
     }
 
+    /**
+     * Return a list of array with a pictureId associated with a number of like
+     * @return array(array('pictureId'=>aPictureId,'like'=>countOfLike),array(..),..)
+     */
     private function getClassementWithPictureIdAndLikeCount(){
         $UtilService = new UtilService();
         $dateHashed = $UtilService->getCurrentHashedCode();
@@ -182,29 +206,11 @@ class UserRepository {
         return $data;
     }
 
-    public function getUserMostLiked(){
-        $data = $this->getClassementWithPictureIdAndLikeCount();
-
-        $pictureIds = array();
-        $likes = array();
-        // Obtient une liste de colonnes
-        foreach ($data as $key => $row) {
-            $pictureIds[$key]  = $row['pictureId'];
-            $likes[$key] = $row['like'];
-        }
-
-        // Trie les donn�es par like DESC, pictureId DESC
-        // Ajoute $data en tant que dernier param�tre, pour trier par la cl� commune
-        array_multisort($likes, SORT_DESC, $pictureIds, SORT_DESC, $data);
-
-        if(empty($pictureIds)){
-            return false;
-        }
-
-        $pictureId = $pictureIds[0];
-        return $this->getUserByPictureId($pictureId);
-    }
-
+    /**
+     * Return for the current user a position in the contest,
+     * by sorting the getClassementWithPictureIdAndLikeCount()
+     * @return bool|int
+     */
     public function getUserClassement(){
 
         $user = $this->getUser();
@@ -232,6 +238,53 @@ class UserRepository {
                 return $position;
             }
             $position++;
+        }
+    }
+
+    /**
+     * Get the user who have the most like for the associated pictureId
+     * @return array user
+     */
+    private function getUserMostLiked(){
+        $data = $this->getClassementWithPictureIdAndLikeCount();
+
+        $pictureIds = array();
+        $likes = array();
+        // Obtient une liste de colonnes
+        foreach ($data as $key => $row) {
+            $pictureIds[$key]  = $row['pictureId'];
+            $likes[$key] = $row['like'];
+        }
+
+        // Trie les donn�es par like DESC, pictureId DESC
+        // Ajoute $data en tant que dernier param�tre, pour trier par la cl� commune
+        array_multisort($likes, SORT_DESC, $pictureIds, SORT_DESC, $data);
+
+        if(empty($pictureIds)){
+            return false;
+        }
+
+        $pictureId = $pictureIds[0];
+        return $this->getUserByPictureId($pictureId);
+    }
+
+    /**
+     * Update the win date (date_win) for a user to the current date
+     * @see Idea: use it with a CRON at the end of the month ?
+     */
+    public function setUserWinner(){
+        $user = $this->getUserMostLiked();
+        $sql = 'UPDATE user SET date_win = :date_win WHERE id = :id';
+        $date = new DateTime();
+        $Pdo = DatabaseService::getInstance()->getPdo();
+        try{
+            $sth = $Pdo->prepare($sql);
+            $inputParameters = array(':id' => $user['id'], ':date_win' => $date->format('Y-m-d H:i:s'));
+            $sth->execute($inputParameters);
+        }catch (Exception $e){
+            echo "Exception occured, code: " . $e->getCode();
+            echo " with message: " . $e->getMessage();
+            die();
         }
     }
 

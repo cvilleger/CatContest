@@ -25,9 +25,10 @@ CREATE TABLE IF NOT EXISTS `user` (
   `verified` tinyint(1) NOT NULL,
   `pictureId` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `pictureLink` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `pictureLinkMin` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `pictureLinkMin` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `date_win` datetime(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
