@@ -26,8 +26,18 @@
             ?>
         </div>
         <div id="infos-my-picture">
-            Titre de ma photo: mon super chat<br>
-            Nombre de likes : 10<br>
+            Nombre de likes :
+            <?php
+            $date = new DateTime();
+            $dateFormated = $date->format('Y-m'); //Current year and month
+            $dateHashed = crypt($dateFormated, 'sa6546me4fgbqa+pdz@ok4p8fghsrg');
+            $url = 'https://catcontest.herokuapp.com/maphoto.php?id=' . $user['pictureId'] ; //. '&code=' . $dateHashed ;
+            $ch = curl_init(); // create curl resource
+            var_dump($ch);
+            curl_setopt($ch, CURLOPT_URL, 'https://api.facebook.com/method/links.getStats?urls=' . $url . '&type=json'); // set url
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); //return the transfer as a string
+            $output = curl_exec($ch);
+            ?>
         </div>
     </div>
 
@@ -38,9 +48,6 @@
         <div class="wrapperAlbums"><img src="public/img/chat5.jpg"><span class="albumFacebookTitle">Baptiste Linel</span></div>
         <div class="wrapperAlbums"><img src="public/img/chat6.jpg"><span class="albumFacebookTitle">Christophe Villeger</span></div>
         <?php
-        $date = new DateTime();
-        $dateFormated = $date->format('Y-m'); //Current year and month
-        $dateHashed = crypt($dateFormated, 'sa6546me4fgbqa+pdz@ok4p8fghsrg');
             $UserRepository = new UserRepository();
             $users = $UserRepository->getUsersWithPicture();
             if(empty($users)){
@@ -50,7 +57,7 @@
                 $pictureLinkMin = $user['pictureLinkMin'];
                 echo '<div class="wrapperAlbums"><img src="' . $pictureLinkMin . '">';
                 echo '<div class="clear"></div>';
-                echo '<div class="fb-like fb-btn" data-href="https://catcontest.herokuapp.com/maphoto.php?id=' . $user['pictureId'] . '&code=' . $dateHashed . '"
+                echo '<div class="fb-like fb-btn" data-href="https://catcontest.herokuapp.com/maphoto.php?id=' . $user['pictureId'] . '"
                     data-layout="button_count"
                     data-show-faces="true"
                     data-share="false"
