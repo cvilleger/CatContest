@@ -39,8 +39,7 @@
             <br>
             Classement :
             <?php
-                $UserRepository->getUserClassement();
-                echo '/ ' . count($UserRepository->getUsersWithPicture());
+                echo $UserRepository->getUserClassement() . ' / ' . count($UserRepository->getUsersWithPicture());
             ?>
         </div>
     </div>

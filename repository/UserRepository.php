@@ -178,16 +178,16 @@ class UserRepository {
             $likes[$key] = $row['like'];
         }
 
-        // Trie les données par like ASC, pictureId ASC
+        // Trie les données par like DESC, pictureId DESC
         // Ajoute $data en tant que dernier paramètre, pour trier par la clé commune
-        array_multisort($likes, SORT_ASC, $pictureIds, SORT_ASC, $data);
+        array_multisort($likes, SORT_DESC, $pictureIds, SORT_DESC, $data);
+        foreach($pictureIds as $key => $currentPictureId){
+            if ($pictureId == $currentPictureId){
+                break;
+            }
+        }
 
-        var_dump($pictureIds);
-
-
-
-
-
+        return $key + 1;
     }
 
 }
