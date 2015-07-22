@@ -125,6 +125,12 @@ class UserRepository {
 
     }
 
+    /**
+     * For a PicktureId, retrieve the user and deliver his PictureLink
+     * @param $pictureId
+     * @return mixed
+     *
+     */
     public function getPictureLinkByPictureId($pictureId){
         $Pdo = DatabaseService::getInstance()->getPdo();
         $sql = 'SELECT pictureLink FROM user WHERE pictureId = :pictureId';
@@ -139,6 +145,49 @@ class UserRepository {
         }
         $res = $sth->fetch(PDO::FETCH_ASSOC);
         return $res;
+    }
+
+    public function getUserClassement(){
+
+        $user = $this->getUser();
+        if($user['pictureId'] == false){
+            return 0;
+        }
+
+        $date = new DateTime();
+        $dateFormated = $date->format('Y-m'); //Current year and month
+        $dateHashed = crypt($dateFormated, 'sa6546me4fgbqa+pdz@ok4p8fghsrg');
+
+        $users = $this->getUsersWithPicture();
+        $data = array();
+        foreach($users as $user){
+            $pictureId = $user['pictureId'];
+            $url = 'https://catcontest.herokuapp.com/maphoto.php?id=' . $user['pictureId'] . 'catcontest' . $dateHashed ;
+            $res = file_get_contents('https://api.facebook.com/method/links.getStats?urls=' . $url . '&format=json');
+            $resArray = json_decode($res);
+            $like = $resArray['0']->like_count;
+
+            $data[] = array('pictureId' => $pictureId, 'like' => $like);
+        }
+
+        $pictureIds = array();
+        $likes = array();
+        // Obtient une liste de colonnes
+        foreach ($data as $key => $row) {
+            $pictureIds[$key]  = $row['pictureId'];
+            $likes[$key] = $row['like'];
+        }
+
+        // Trie les données par like décroissant, pictureId décroissant
+        // Ajoute $data en tant que dernier paramètre, pour trier par la clé commune
+        array_multisort($likes, SORT_DESC, $pictureIds, SORT_DESC, $data);
+
+        var_dump($pictureIds);
+
+
+
+
+
     }
 
 }

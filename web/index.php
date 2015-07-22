@@ -28,13 +28,19 @@
         <div id="infos-my-picture">
             Nombre de likes :
             <?php
-            $date = new DateTime();
-            $dateFormated = $date->format('Y-m'); //Current year and month
-            $dateHashed = crypt($dateFormated, 'sa6546me4fgbqa+pdz@ok4p8fghsrg');
-            $url = 'https://catcontest.herokuapp.com/maphoto.php?id=' . $user['pictureId'] . 'catcontest' . $dateHashed ; //. '&code=' . $dateHashed ;
-
-            $res = file_get_contents('https://api.facebook.com/method/links.getStats?urls=' . $url . '&format=json');
-            var_dump(json_decode($res));
+                $date = new DateTime();
+                $dateFormated = $date->format('Y-m'); //Current year and month
+                $dateHashed = crypt($dateFormated, 'sa6546me4fgbqa+pdz@ok4p8fghsrg');
+                $url = 'https://catcontest.herokuapp.com/maphoto.php?id=' . $user['pictureId'] . 'catcontest' . $dateHashed ; //. '&code=' . $dateHashed ;
+                $res = file_get_contents('https://api.facebook.com/method/links.getStats?urls=' . $url . '&format=json');
+                $resArray = json_decode($res);
+                echo $resArray['0']->like_count;
+            ?>
+            <br>
+            Classement :
+            <?php
+                $UserRepository->getUserClassement();
+                echo '/ ' . count($UserRepository->getUsersWithPicture());
             ?>
         </div>
     </div>

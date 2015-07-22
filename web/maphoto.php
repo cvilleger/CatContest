@@ -6,7 +6,7 @@ require_once '../repository/UserRepository.php';
 <body>
 <nav>
     <ul>
-        <li>Vous voulez participer au concours ?<a href='login.php'> Connectez-vous !</a></li>
+        <li><a href="index.php">Accueil</a></li>
     </br>
     <div class="fb-page" data-href="https://www.facebook.com/TheCatContest" data-width="300" data-height="70" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/TheCatContest"><a href="https://www.facebook.com/TheCatContest">CatContest Community</a></blockquote></div></div>
 </ul>
