@@ -136,7 +136,6 @@ class FacebookAuthService {
         }
         $postParam = array('message' => $msg);
         $postParam['url'] = $path;
-
         try{
             $response = (new FacebookRequest(
                 $session, 'POST', '/me/photos', $postParam

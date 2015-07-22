@@ -7,9 +7,6 @@ define('PATH_SERVICE', PATH_ROOT . 'service/');
 
 if( $_SERVER['HTTP_HOST'] === 'localhost' ){
 
-    // Website Configuration
-    define('WEBSITE_TITLE', 'CatContest Dev');
-
     // Facebook
     define('FB_APPID', '833099383411238');
     define('FB_APPSECRET', 'b2ebce8739519354843579e32ccc271b');
@@ -23,9 +20,6 @@ if( $_SERVER['HTTP_HOST'] === 'localhost' ){
     define('DB_PASSWORD', '');
 
 } else {
-
-    // Website Configuration
-    define('WEBSITE_TITLE', 'CatContest - Le concours de photo de chat');
 
     // Facebook
     define('FB_APPID', '831785973542579');

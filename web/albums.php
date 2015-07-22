@@ -47,8 +47,11 @@
             $url = $_POST['input-url'];
             $res = $FacebookAuthService->postPhotoWithMsg($url);
             $pictureId = $res['id'];
+            $facebookPhoto = $FacebookAuthService->getFacebookPhoto($pictureId);
+            $UserRepository = new UserRepository();
+            $UserRepository->updateUserPicture($pictureId, $facebookPhoto);
             echo '<script type="application/javascript">';
-            echo 'window.location.href = "save.php?id="' . $pictureId;
+            echo 'window.location.href = / ';
             echo '</script>';
         }
 

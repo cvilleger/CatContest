@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <title><?php echo WEBSITE_TITLE ;?></title>
+    <title>CatContest - Le concours de photo de chat</title>
     <link rel="icon" type="image/png" href="../public/img/favicon.png" />
     <meta name="theme-color" content="#e5dec2">
     <meta name="description" content="CatContest est le concours de photo de chat. Participer au concours pour tenter de renporter la première place !">
