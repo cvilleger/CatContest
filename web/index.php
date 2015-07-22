@@ -31,12 +31,10 @@
             $date = new DateTime();
             $dateFormated = $date->format('Y-m'); //Current year and month
             $dateHashed = crypt($dateFormated, 'sa6546me4fgbqa+pdz@ok4p8fghsrg');
-            $url = 'https://catcontest.herokuapp.com/maphoto.php?id=' . $user['pictureId'] ; //. '&code=' . $dateHashed ;
-            $ch = curl_init(); // create curl resource
-            var_dump($ch);
-            curl_setopt($ch, CURLOPT_URL, 'https://api.facebook.com/method/links.getStats?urls=' . $url . '&type=json'); // set url
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); //return the transfer as a string
-            $output = curl_exec($ch);
+            $url = 'https://catcontest.herokuapp.com/maphoto.php?id=' . $user['pictureId'] . 'catcontest' . $dateHashed ; //. '&code=' . $dateHashed ;
+
+            $res = file_get_contents('https://api.facebook.com/method/links.getStats?urls=' . $url . '&format=json');
+            var_dump(json_decode($res));
             ?>
         </div>
     </div>
@@ -57,7 +55,7 @@
                 $pictureLinkMin = $user['pictureLinkMin'];
                 echo '<div class="wrapperAlbums"><img src="' . $pictureLinkMin . '">';
                 echo '<div class="clear"></div>';
-                echo '<div class="fb-like fb-btn" data-href="https://catcontest.herokuapp.com/maphoto.php?id=' . $user['pictureId'] . '"
+                echo '<div class="fb-like fb-btn" data-href="https://catcontest.herokuapp.com/maphoto.php?id=' . $user['pictureId'] . 'catcontest' . $dateHashed . '"
                     data-layout="button_count"
                     data-show-faces="true"
                     data-share="false"

@@ -14,19 +14,18 @@ require_once '../repository/UserRepository.php';
 <h2>Votez pour la photo de chat du mois !</h2>
 <?php
     if (isset($_GET['id'])){
-        $pictureId = $_GET['id'];
+        $id = $_GET['id'];
+        $res = explode('catcontest',$id);
+        $pictureId = $res[0];
         $UserRepository = new UserRepository();
         $res = $UserRepository->getPictureLinkByPictureId($pictureId);
-        if($res === false){
+        if($res == false){
             header("location: /" );
         }
         $pictureLink = $res['pictureLink'];
-        $date = new DateTime();
-        $dateFormated = $date->format('Y-m'); //Current year and month
-        $dateHashed = crypt($dateFormated, 'sa6546me4fgbqa+pdz@ok4p8fghsrg');
 
         echo '<div><img style="display: block; margin-left: auto; margin-right: auto;" height=300px src="' . $res['pictureLink'] . '" title="Votre photo du Cat Contest">';
-        echo '<div class="fb-like" data-href="https://catcontest.herokuapp.com/maphoto.php?id=' . $pictureId . '"
+        echo '<div class="fb-like" data-href="https://catcontest.herokuapp.com/maphoto.php?id=' . $id . '"
                     data-layout="box_count"
                     data-show-faces="true"
                     data-share="false"
