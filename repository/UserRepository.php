@@ -182,12 +182,13 @@ class UserRepository {
         // Ajoute $data en tant que dernier param�tre, pour trier par la cl� commune
         array_multisort($likes, SORT_DESC, $pictureIds, SORT_DESC, $data);
         var_dump($pictureIds);
-        $position = 1;
+        $iterator = 1;
         foreach($pictureIds as $currentPictureId){
             if ($pictureId == $currentPictureId){
+                $position = $iterator;
                 break;
             }
-            $position++;
+            $iterator++;
         }
 
         return $position;
