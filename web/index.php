@@ -39,7 +39,12 @@
             <br>
             Classement :
             <?php
-                echo $UserRepository->getUserClassement() . ' / ' . count($UserRepository->getUsersWithPicture());
+                $classement = $UserRepository->getUserClassement();
+                if ($classement === false){
+                    echo 'Partiper au concours pour être classer !';
+                } else {
+                    echo $UserRepository->getUserClassement() . ' / ' . count($UserRepository->getUsersWithPicture());
+                }
             ?>
         </div>
     </div>

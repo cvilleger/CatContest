@@ -31,7 +31,7 @@ class UserRepository {
 
     public function getUsersWithPicture(){
         $Pdo = DatabaseService::getInstance()->getPdo();
-        $sql = 'SELECT * FROM user WHERE pictureId IS NOT NULL';
+        $sql = "SELECT * FROM user WHERE pictureId IS NOT NULL AND pictureId <> '' ";
         try{
             $sth = $Pdo->prepare($sql);
             $sth->execute();
@@ -151,7 +151,7 @@ class UserRepository {
 
         $user = $this->getUser();
         if($user['pictureId'] == false){
-            return 0;
+            return false;
         }
 
         $date = new DateTime();
