@@ -52,9 +52,6 @@
     <!-- concurrent gallery -->
     <h2>Les photos du concours</h2>
     <div id="concurrent-gallery">
-        <div class="wrapperAlbums"><img src="public/img/chat4.jpg"><span class="albumFacebookTitle">Margot Hanszechuen</span></div>
-        <div class="wrapperAlbums"><img src="public/img/chat5.jpg"><span class="albumFacebookTitle">Baptiste Linel</span></div>
-        <div class="wrapperAlbums"><img src="public/img/chat6.jpg"><span class="albumFacebookTitle">Christophe Villeger</span></div>
         <?php
             $UserRepository = new UserRepository();
             $users = $UserRepository->getUsersWithPicture();

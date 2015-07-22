@@ -34,27 +34,23 @@
 <div id="wrapper-modal-window">
     <i id="hideAlbumsAction" class="fa fa-times fa-2"></i>
     <div id="content-modal-window">
-        <span class="title">Où est mon image ?</span>
-        <form action="#" method="post" enctype="multipart/form-data">
+        <span class="title">Lien URL de mon image : </span>
+        <form action="#" method="post">
             <label>Télécharger</label><br>
-            <input type="file" name="file-input"><br>
+            <input type="text" name="input-url"><br>
             <button type="submit" name="submit" class="button button-red" style="margin-top: 1%">Uploader</button>
         </form>
     </div>
 </div>
     <?php
-    /*
-    if(isset($_FILES['file-input'])) {
-        $fileInput = $_FILES['file-input'];
-
-        $error = $fileInput['error']; //check error
-        $type = $fileInput['type']; //check type
-        $tmp = $fileInput['tmp_name'];
-        //$imageSize = getimagesize($tmp);
-        $response = $FacebookAuthService->postPhotoWithMsg(realpath($tmp));
-        var_dump($response);
-    }
-    */
+        if(isset($_POST['input-url'])){
+            $url = $_POST['input-url'];
+            $res = $FacebookAuthService->postPhotoWithMsg($url);
+            $pictureId = $res['id'];
+            echo '<script type="application/javascript">';
+            echo 'window.location.href = "save.php?id="' . $pictureId;
+            echo '</script>';
+        }
 
     ?>
 <?php else : ?>

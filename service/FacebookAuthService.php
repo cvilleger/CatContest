@@ -124,22 +124,18 @@ class FacebookAuthService {
     }
 
     /**
+     * Post photo url to facebook
      * @param $path
-     * @param bool $isURL
      * @return mixed
      */
-    public function postPhotoWithMsg($path, $msg = false, $isURL = false){
+    public function postPhotoWithMsg($path, $msg = false){
         $session = $this->getAuth('publish_actions');
 
         if($msg === false){
             $msg = 'Ma photo de concours CatContest !';
         }
         $postParam = array('message' => $msg);
-        if($isURL === true){
-            $postParam['url'] = $path;
-        }else{
-            $postParam['source'] = $path;
-        }
+        $postParam['url'] = $path;
 
         try{
             $response = (new FacebookRequest(
@@ -155,8 +151,7 @@ class FacebookAuthService {
             die();
         }
 
-        // and get Property id
-        return $response;
+        return $response->asArray();
     }
 
     /**
