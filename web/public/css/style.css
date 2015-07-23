@@ -260,6 +260,7 @@ p{
     display: block;
     margin: auto;
     margin-top: 2%;
+    margin-bottom: 2%;
     max-height: 300px;
 }
 
@@ -299,4 +300,28 @@ p{
 #fan-banner{
     display: inline-block;
     vertical-align: middle;
+}
+
+/**
+* Gift
+**/
+
+#giftsName{
+    margin-top: 2%;
+    text-align: center;
+}
+#giftsName span{
+    padding-left: 6%;
+}
+
+#gifts{
+    display: inline-block;
+    width: 100%;
+    padding-top: 2%;
+}
+
+#gifts img{
+    max-height: 200px;
+    margin-left: 9%;
+    border: 7px solid white;
 }
