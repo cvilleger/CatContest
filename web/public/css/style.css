@@ -252,6 +252,7 @@ p{
 .important{
     font-size: 2em;
     font-weight: bold;
+    text-align: center;
 }
 
 .picture img{
