@@ -117,17 +117,13 @@
 
     <?php endif ?>
 
-    <div class="important">Les gros lots incroyables !</div>
+    <div class="important">Le gros lot incroyable : voyage au Caraïbes !</div>
 
     <div id="giftsName">
-        <span style="color : gold; font-size: 1.7em">Premier prix : voyage aux Caraïbes</span>
-        <span style="color : #c0c0c0; font-size: 1.7em">Deuxième prix : voiture Smart</span>
-        <span style="color : saddlebrown; font-size: 1.7em">Troisième prix : ordinateur Macbook Air</span>
+
     </div>
     <div id="gifts">
         <img src="public/img/voyage.jpg" alt="cadeau voyage">
-        <img src="public/img/voiture.jpg" alt="cadeau voiture">
-        <img src="public/img/ordi.jpg" alt="cadeau ordi">
     </div>
 
     <?php require_once 'include/footer.php'; ?>

@@ -316,12 +316,14 @@ p{
 
 #gifts{
     display: inline-block;
+    text-align: center;
     width: 100%;
-    padding-top: 2%;
 }
 
 #gifts img{
     max-height: 200px;
-    margin-left: 9%;
+    width: auto;
+    margin: auto;
     border: 7px solid white;
+    display: block;
 }
