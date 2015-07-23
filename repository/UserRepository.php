@@ -288,4 +288,24 @@ class UserRepository {
         }
     }
 
+    /**
+     * Get from all user who have a date_win, the most recent one
+     * @return array user|empty
+     */
+    public function getLastWinner(){
+        $sql = "SELECT * FROM user WHERE date_win IS NOT NULL AND date_win <> '' ORDER BY date_win DESC";
+        $Pdo = DatabaseService::getInstance()->getPdo();
+        try{
+            $sth = $Pdo->prepare($sql);
+            $sth->execute();
+        }catch (Exception $e){
+            echo "Exception occured, code: " . $e->getCode();
+            echo " with message: " . $e->getMessage();
+            die();
+        }
+
+        $res = $sth->fetch(PDO::FETCH_ASSOC); //Get the first row (User)
+        return $res;
+    }
+
 }
