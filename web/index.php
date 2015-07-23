@@ -58,7 +58,7 @@
             $UserRepository = new UserRepository();
             $users = $UserRepository->getUsersWithPicture();
             if(empty($users)){
-                echo '<h2>Soyer la première personne à participer au Cat Contest de ce mois !</h2>';
+                echo '<div class="important">Soyer la première personne à participer au Cat Contest de ce mois !</div>';
             }
             foreach($users as $user){
                 $pictureLinkMin = $user['pictureLinkMin'];
@@ -108,9 +108,11 @@
             </span>
         </div>
     </div>
+    <div class="picture">
     <?php
-        echo '<img height=400px src="' . $userWinner['pictureLink'] . '">';
+        echo '<img src="' . $userWinner['pictureLink'] . '">';
     ?>
+    </div>
     <?php endif ?>
 
     <?php endif ?>
