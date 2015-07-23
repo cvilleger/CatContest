@@ -8,8 +8,6 @@
                 <li><a href="index.php">Accueil</a></li>
                 <li id="uploadActionNav"><a href="albums.php">Choisir ma photo</a></li>
             <?php endif; ?>
-            </br>
-            <div class="fb-page" data-href="https://www.facebook.com/TheCatContest" data-width="300" data-height="70" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/TheCatContest"><a href="https://www.facebook.com/TheCatContest">CatContest Community</a></blockquote></div></div>
         </ul>
     </nav>
 
@@ -27,4 +25,13 @@
         </a>
     </div>
     <?php endif; ?>
+    <div id="fan-banner">
+        <div class="fb-page" data-href="https://www.facebook.com/TheCatContest" data-width="300" data-height="70" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true">
+            <div class="fb-xfbml-parse-ignore">
+                <blockquote cite="https://www.facebook.com/TheCatContest">
+                    <a href="https://www.facebook.com/TheCatContest">Cat Contest Communauté</a>
+                </blockquote>
+            </div>
+        </div>
+    </div>
 </header>

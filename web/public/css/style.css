@@ -24,6 +24,7 @@ nav{
     -webkit-box-shadow: 0 1px 10px 0 black;
     -o-box-shadow: 0 1px 10px 0 black;
     box-shadow: 0 1px 10px 0 black;
+    margin-bottom: 1%;
 }
 
 nav a{
@@ -248,6 +249,11 @@ p{
     font-size: 2em;
 }
 
+.important{
+    font-size: 2em;
+    font-weight: bold;
+}
+
 /**
 * My picture
 **/
@@ -277,3 +283,11 @@ p{
     margin-bottom: 5px;
 }
 
+/**
+* Fan banner
+**/
+
+#fan-banner{
+    display: inline-block;
+    vertical-align: middle;
+}
