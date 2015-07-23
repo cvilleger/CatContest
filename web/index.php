@@ -104,11 +104,7 @@
     <div id="wrapper-animal-enterprise">
         <div id="second-wrapper-animal-enterprise">
             <span id="title-enterprise">
-                La photo gagnante pour le mois du
-                <?php
-                    $dateWinner = new DateTime($userWinner['date_win']);
-                    echo $dateWinner->format('m-Y');
-                ?>
+                La dernière photo gagnante
             </span>
         </div>
     </div>
