@@ -112,9 +112,11 @@
             </span>
         </div>
     </div>
+    <div class="picture">
     <?php
-        echo '<img height=400px src="' . $userWinner['pictureLink'] . '">';
+        echo '<img src="' . $userWinner['pictureLink'] . '">';
     ?>
+    </div>
     <?php endif ?>
 
     <?php endif ?>

@@ -21,7 +21,7 @@ require_once '../Bootstrap.php' ?>
 
         echo '<img style="display: block; margin-left: auto; margin-right: auto;" height=300px src="' . $facebookPhoto['source'] . '" title="Votre photo du Cat Contest">';
 
-        echo '<h2>Merci de votre participation, redirection en cours...</h2>';
+        echo '<div class="important">Merci de votre participation, redirection en cours...</div>';
         echo '</br>';
 
         echo '<img style="display: block; margin-left: auto; margin-right: auto; border-radius: 50%;" src="public/img/cat-loading.gif" title="Chargement de votre photo">';

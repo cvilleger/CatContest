@@ -254,6 +254,14 @@ p{
     font-weight: bold;
 }
 
+.picture img{
+    border: 7px solid white;
+    display: block;
+    margin: auto;
+    margin-top: 2%;
+    max-height: 300px;
+}
+
 /**
 * My picture
 **/
