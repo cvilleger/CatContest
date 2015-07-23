@@ -185,9 +185,7 @@ class FacebookAuthService {
                 $session, 'GET', '/' . $album_id . "/photos"
             ))->execute()->getGraphObject();
         } catch(FacebookRequestException $e) {
-            echo "Exception occured, code: " . $e->getCode();
-            echo " with message: " . $e->getMessage();
-            die();
+            header("location: /" );
         }
         $facebookPhotos = $facebookRequest->asArray();
 
@@ -205,9 +203,7 @@ class FacebookAuthService {
                 $session, 'GET', '/' . $photoId
             ))->execute()->getGraphObject();
         } catch(FacebookRequestException $e) {
-            echo "Exception occured, code: " . $e->getCode();
-            echo " with message: " . $e->getMessage();
-            die();
+            header("location: /" );
         }
         $facebookPhoto = $facebookRequest->asArray();
 

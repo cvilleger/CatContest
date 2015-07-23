@@ -95,14 +95,28 @@
         <p>Montrez votre chat et gagnez de nombreux <span class ="blue-sky">cadeaux</span></p>
     </div>
 
-    <!-- Wrapper title enterprise -->
+    <!-- Wrapper winner -->
+    <?php
+        $UserRepository = new UserRepository();
+        $userWinner = $UserRepository->getLastWinner();
+    ?>
+    <?php if(!empty($userWinner)): ?>
     <div id="wrapper-animal-enterprise">
         <div id="second-wrapper-animal-enterprise">
             <span id="title-enterprise">
-                Animal Enterprise
+                La photo gagnante pour le mois du
+                <?php
+                    $dateWinner = new DateTime($userWinner['date_win']);
+                    echo $dateWinner->format('m-Y');
+                ?>
             </span>
         </div>
     </div>
+    <?php
+        echo '<img height=400px src="' . $userWinner['pictureLink'] . '">';
+    ?>
+    <?php endif ?>
+
     <?php endif ?>
 
     <?php require_once 'include/footer.php'; ?>
